@@ -1,0 +1,6 @@
+.header {
+  padding: 45px 0 41px;
+  display: grid;
+  grid-template-columns: minmax(320px, 880px);
+  border-bottom: 1px solid #545454;
+}
