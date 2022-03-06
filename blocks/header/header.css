@@ -2,5 +2,13 @@
   padding: 45px 0 41px;
   display: grid;
   grid-template-columns: minmax(320px, 880px);
-  border-bottom: 1px solid #545454;
+  border-bottom: 1px solid rgba(84,84,84,.7); /*#545454 - по макету, но там 70% opacity пришлось заменить*/
+  margin-bottom: 40px;
+}
+
+@media screen and (max-width: 520px) {
+  .header {
+    padding: 28px 0 31.6px;
+    margin-bottom: 42px;
+  }
 }

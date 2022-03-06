@@ -2,6 +2,15 @@
   margin: 0;
   width: 142px;
   height: 33px;
-  background-image: url(../../../images/logo_white.svg);
+  background-image: url(../../../images/icons/logo_white_icon.svg);
   background-size: cover;
+}
+
+@media screen and (max-width: 520px) {
+  .header__logo {
+    width: 103.74px;
+    height: 22.4px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 }
