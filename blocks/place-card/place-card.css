@@ -1,0 +1,9 @@
+.place-card {
+  margin: 0;
+  max-width: 282px;
+  min-height: 362px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+}
