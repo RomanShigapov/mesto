@@ -1,0 +1,9 @@
+.place-card__description {
+  width: 242px;
+  display: grid;
+  grid-template-columns: calc(242px - 30px - 22px) 22px;
+  gap: 30px;
+  align-items: baseline;
+  align-self: center;
+  justify-self: center;
+}
