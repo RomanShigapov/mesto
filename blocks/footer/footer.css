@@ -1,0 +1,10 @@
+.footer {
+  margin-bottom: 60px;
+  color: #545454;
+}
+
+@media screen and (max-width: 520px) {
+  .footer {
+    margin-bottom: 36px;
+  }
+}
