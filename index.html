@@ -20,10 +20,10 @@
           <img class="profile__avatar" src="./images/profile.jpg" alt="аватар профиля">
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button button button_opacity_main" type="button"></button>
+            <button class="profile__edit-button button button_opacity_main" type="button" aria-label="вызов формы редактирования профиля"></button>
             <p class="profile__description">Исследователь океана</p>
           </div>
-          <button class="profile__add-button button button_opacity_main" type="button"></button>
+          <button class="profile__add-button button button_opacity_main" type="button" aria-label="выхов формы добавления карточки места"></button>
         </section>
         <section class="places" aria-label="Секция карточек мест">
           <ul class="places__grid-items">
@@ -32,7 +32,7 @@
               alt="фото Сентинский храм">
               <div class="place-card__description">
                 <h2 class="place-card__caption">Карачаево-Черкесия</h2>
-                <button class="place-card__like-button button button_opacity_low" type="button"></button>
+                <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
               </div>
             </li>
             <li class="place-card">
@@ -40,7 +40,7 @@
               alt="фото Домбай северное подножье главного Кавказкого хребта">
               <div class="place-card__description">
                 <h2 class="place-card__caption">Домбай</h2>
-                <button class="place-card__like-button button button_opacity_low" type="button"></button>
+                <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
               </div>
             </li>
             <li class="place-card">
@@ -48,7 +48,7 @@
               alt="фото гора Эльбрус вид издалека">
               <div class="place-card__description">
                 <h2 class="place-card__caption">Гора Эльбрус</h2>
-                <button class="place-card__like-button button button_opacity_low" type="button"></button>
+                <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
               </div>
             </li>
             <li class="place-card">
@@ -56,7 +56,7 @@
               alt="фото Камчатка вид на вулкан">
               <div class="place-card__description">
                 <h2 class="place-card__caption">Камчатка</h2>
-                <button class="place-card__like-button button button_opacity_low" type="button"></button>
+                <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
               </div>
             </li>
             <li class="place-card">
@@ -64,7 +64,7 @@
               alt="фото Байкала вид на Баргузинский залив">
               <div class="place-card__description">
                 <h2 class="place-card__caption">Байкал Баргузинский залив</h2>
-                <button class="place-card__like-button button button_opacity_low" type="button"></button>
+                <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
               </div>
             </li>
             <li class="place-card">
@@ -72,7 +72,7 @@
               alt="фото берега Куршского полуострова">
               <div class="place-card__description">
                 <h2 class="place-card__caption">Куршская коса</h2>
-                <button class="place-card__like-button button button_opacity_low" type="button"></button>
+                <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
               </div>
             </li>
           </ul>
@@ -81,6 +81,17 @@
       <footer class="footer page-section">
         <p class="footer__copyright">© 2022. Sk'arh</p>
       </footer>
+      <div class="popup popup_opened">
+        <form class="popup__container">
+          <button class="popup__close-button button button_opacity_main" type="button" aria-label="кнопка закрыть форму резактирования профиля"></button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <fieldset class="popup__inputs">
+            <input class="popup__input" placeholder="Введите имя профиля" type="text">
+            <input class="popup__input" placeholder="Введите род деятельности" type="text">
+          </fieldset>
+          <button class="popup__save-button button button_opacity_high" type="sumbmit">Сохранить</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>
