@@ -3,8 +3,15 @@
   color: #545454;
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: calc(3 * 282px + 2 * 17px - 1px + 16px)) {
   .footer {
+    width: calc(2 * 282px + 17px);
+  }
+}
+
+@media screen and (max-width: calc(2 * 282px + 17px - 1px + 16px)) {
+  .footer {
+    width: 282px;
     margin-bottom: 36px;
   }
 }
