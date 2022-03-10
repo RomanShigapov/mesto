@@ -10,89 +10,87 @@
     <meta name="author" content="Шигапов Роман">
     <title>Mesto</title>
   </head>
-  <body>
-    <div class="root">
-      <header class="header page-section">
-        <figure class="header__logo"></figure>
-      </header>
-      <main class="content page-section">
-        <section class="profile" aria-label="Секция профиля пользователя">
-          <img class="profile__avatar" src="./images/profile.jpg" alt="аватар профиля">
-          <div class="profile__info">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button button button_opacity_main" type="button" aria-label="вызов формы редактирования профиля"></button>
-            <p class="profile__description">Исследователь океана</p>
-          </div>
-          <button class="profile__add-button button button_opacity_main" type="button" aria-label="выхов формы добавления карточки места"></button>
-        </section>
-        <section class="places" aria-label="Секция карточек мест">
-          <ul class="places__grid-items">
-            <li class="place-card">
-              <img class="place-card__picture" src="./images/karachaevsk.jpg"
-              alt="фото Сентинский храм">
-              <div class="place-card__description">
-                <h2 class="place-card__caption">Карачаево-Черкесия</h2>
-                <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
-              </div>
-            </li>
-            <li class="place-card">
-              <img class="place-card__picture" src="./images/dombay.jpg"
-              alt="фото Домбай северное подножье главного Кавказкого хребта">
-              <div class="place-card__description">
-                <h2 class="place-card__caption">Домбай</h2>
-                <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
-              </div>
-            </li>
-            <li class="place-card">
-              <img class="place-card__picture" src="./images/elbrus.jpg"
-              alt="фото гора Эльбрус вид издалека">
-              <div class="place-card__description">
-                <h2 class="place-card__caption">Гора Эльбрус</h2>
-                <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
-              </div>
-            </li>
-            <li class="place-card">
-              <img class="place-card__picture" src="./images/kamchatka.jpg"
-              alt="фото Камчатка вид на вулкан">
-              <div class="place-card__description">
-                <h2 class="place-card__caption">Камчатка</h2>
-                <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
-              </div>
-            </li>
-            <li class="place-card">
-              <img class="place-card__picture" src="./images/baikal.jpg"
-              alt="фото Байкала вид на Баргузинский залив">
-              <div class="place-card__description">
-                <h2 class="place-card__caption">Байкал Баргузинский залив</h2>
-                <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
-              </div>
-            </li>
-            <li class="place-card">
-              <img class="place-card__picture" src="./images/kurshskaya-kosa.jpg"
-              alt="фото берега Куршского полуострова">
-              <div class="place-card__description">
-                <h2 class="place-card__caption">Куршская коса</h2>
-                <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
-              </div>
-            </li>
-          </ul>
-        </section>
-      </main>
-      <footer class="footer page-section">
-        <p class="footer__copyright">© 2022. Sk'arh</p>
-      </footer>
-      <div class="popup">
-        <form class="popup__container">
-          <button class="popup__close-button button button_opacity_main" type="button" aria-label="кнопка закрыть форму резактирования профиля"></button>
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <fieldset class="popup__inputs">
-            <input class="popup__input popup__input-name" placeholder="Введите имя профиля" type="text">
-            <input class="popup__input popup__input-description" placeholder="Введите род деятельности" type="text">
-          </fieldset>
-          <button class="popup__save-button button button_opacity_high" type="submit">Сохранить</button>
-        </form>
-      </div>
+  <body class="root">
+    <header class="header page-section">
+       <div class="header__logo"></div>
+    </header>
+    <main class="content page-section">
+      <section class="profile" aria-label="Секция профиля пользователя">
+        <img class="profile__avatar" src="./images/profile.jpg" alt="аватар профиля">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-button button button_opacity_main" type="button" aria-label="вызов формы редактирования профиля"></button>
+          <p class="profile__description">Исследователь океана</p>
+        </div>
+        <button class="profile__add-button button button_opacity_main" type="button" aria-label="выхов формы добавления карточки места"></button>
+      </section>
+      <section class="places" aria-label="Секция карточек мест">
+        <ul class="places__grid-items">
+          <li class="place-card">
+            <img class="place-card__picture" src="./images/karachaevsk.jpg"
+            alt="фото Сентинский храм">
+            <div class="place-card__description">
+              <h2 class="place-card__caption">Карачаево-Черкесия</h2>
+              <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
+            </div>
+          </li>
+          <li class="place-card">
+            <img class="place-card__picture" src="./images/dombay.jpg"
+            alt="фото Домбай северное подножье главного Кавказкого хребта">
+            <div class="place-card__description">
+              <h2 class="place-card__caption">Домбай</h2>
+              <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
+            </div>
+          </li>
+          <li class="place-card">
+            <img class="place-card__picture" src="./images/elbrus.jpg"
+            alt="фото гора Эльбрус вид издалека">
+            <div class="place-card__description">
+              <h2 class="place-card__caption">Гора Эльбрус</h2>
+              <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
+            </div>
+          </li>
+          <li class="place-card">
+            <img class="place-card__picture" src="./images/kamchatka.jpg"
+            alt="фото Камчатка вид на вулкан">
+            <div class="place-card__description">
+              <h2 class="place-card__caption">Камчатка</h2>
+              <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
+            </div>
+          </li>
+          <li class="place-card">
+            <img class="place-card__picture" src="./images/baikal.jpg"
+            alt="фото Байкала вид на Баргузинский залив">
+            <div class="place-card__description">
+              <h2 class="place-card__caption">Байкал Баргузинский залив</h2>
+              <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
+            </div>
+          </li>
+          <li class="place-card">
+            <img class="place-card__picture" src="./images/kurshskaya-kosa.jpg"
+            alt="фото берега Куршского полуострова">
+            <div class="place-card__description">
+              <h2 class="place-card__caption">Куршская коса</h2>
+              <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк карточки места"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer page-section">
+      <p class="footer__copyright">© 2022. Sk'arh</p>
+    </footer>
+    <div class="popup">
+      <form class="popup__container">
+        <button class="popup__close-button button button_opacity_main" type="button" aria-label="кнопка закрыть форму резактирования профиля"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <fieldset class="popup__inputs">
+          <input class="popup__input popup__input-name" placeholder="Введите имя профиля" type="text">
+          <input class="popup__input popup__input-description" placeholder="Введите род деятельности" type="text">
+        </fieldset>
+        <button class="popup__save-button button button_opacity_high" type="submit">Сохранить</button>
+      </form>
     </div>
-  <script src="./scripts/index.js"></script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>
