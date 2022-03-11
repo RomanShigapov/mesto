@@ -1,6 +1,6 @@
 .profile {
   display: grid;
-  grid-template-columns: repeat(2,min-content) 1fr;
+  grid-template-columns: min-content 1fr min-content;
   gap: 30px;
   place-items: center;
 }
@@ -13,8 +13,7 @@
 
 @media screen and (max-width: 716px) {
   .profile {
-    margin: 0;
-    grid-template-columns: 120px min-content;
+    grid-template-columns: min-content 1fr;
     row-gap: 26px;
     justify-self: center;
   }
@@ -22,6 +21,7 @@
 
 @media screen and (max-width: 520px) {
   .profile {
+    margin: 0;
     grid-template-columns: 1fr;
   }
 }

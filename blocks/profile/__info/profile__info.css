@@ -1,7 +1,9 @@
 .profile__info {
+  max-width: 420px;
+  min-width: 220px;
   justify-self: left;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 24px;
   column-gap: 18px;
   row-gap: 16px;
   align-items: baseline;
@@ -10,6 +12,7 @@
 @media screen and (max-width: 520px) {
   .profile__info {
     justify-self: center;
+    grid-template-columns: 1fr 18px;
     column-gap: 10px;
     row-gap: 14px;
     margin-bottom: 10px;
