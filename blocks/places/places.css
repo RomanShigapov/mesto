@@ -3,3 +3,9 @@
   min-width: 320px;
   margin-bottom: 66px;
 }
+
+@media screen and (max-width: 520px) {
+  .places {
+    margin-bottom: 48px;
+  }
+}
