@@ -80,16 +80,18 @@
     <footer class="footer page-section">
       <p class="footer__copyright">© 2022. Sk'arh</p>
     </footer>
-    <div class="popup">
-      <form class="popup__container">
+    <div class="popup popup_opened">
+      <div class="popup__container">
         <button class="popup__close-button button button_opacity_main" type="button" aria-label="кнопка закрыть форму резактирования профиля"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <fieldset class="popup__inputs">
-          <input class="popup__input popup__input-name" placeholder="Введите имя профиля" type="text">
-          <input class="popup__input popup__input-description" placeholder="Введите род деятельности" type="text">
-        </fieldset>
-        <button class="popup__save-button button button_opacity_high" type="submit">Сохранить</button>
-      </form>
+        <form class="form">
+          <fieldset class="form__inputs">
+            <input class="form__input" name="profile-name" placeholder="Введите имя профиля" type="text">
+            <input class="form__input" name="profile-description" placeholder="Введите род деятельности" type="text">
+          </fieldset>
+          <button class="form__save-button button button_opacity_high" type="submit">Сохранить</button>
+        </form>
+      </div>
     </div>
     <script src="./scripts/index.js"></script>
   </body>
