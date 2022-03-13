@@ -1,11 +1,11 @@
-.form {
+.popup__form {
   width: 358px;
   display: grid;
   grid-template-columns: 1fr;
 }
 
 @media screen and (max-width: 540px) {
-  .form {
+  .popup__form {
     width: 238px;
   }
 }

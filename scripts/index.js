@@ -2,8 +2,8 @@
 const profileEdit = document.querySelector('.profile__edit-button'); // кнопка редактирования профиля
 const popup = document.querySelector('.popup'); // попап с формой для редактирования профиля
 const popupClose = document.querySelector('.popup__close-button'); // кнопка закрытия на форме редактирования профиля
-const nameInput = document.getElementsByName('profile-name'); // поле ввода имени профиля на форме редактирования
-const descriptionInput = document.getElementsByName('profile-description'); // поле ввода описания профиля на форме редактирования
+const nameInput = popup.querySelector('.popup__form-input_profile-name'); // поле ввода имени профиля на форме редактирования
+const descriptionInput = popup.querySelector('.popup__form-input_profile-description'); // поле ввода описания профиля на форме редактирования
 const nameOutput = document.querySelector('.profile__name'); // имя профиля на странице
 const descriptionOutput = document.querySelector('.profile__description'); // описание профиля на странице
 const profileEditForm = document.querySelector('.popup__container'); // форма для редактирования профиля
@@ -15,16 +15,16 @@ function togglePopup(){
 
 // установка текущих значений из профиля в форму редактирования
 function setPopupInputs(){
-  nameInput[0].value = nameOutput.textContent;
-	descriptionInput[0].value = descriptionOutput.textContent;
+  nameInput.value = nameOutput.textContent;
+	descriptionInput.value = descriptionOutput.textContent;
 }
 
 // сохранения данных из формы редактирования на основную страницу
 function formSubmitHandler (evt) {
 	evt.preventDefault();
 
-  nameOutput.textContent = nameInput[0].value;
-  descriptionOutput.textContent = descriptionInput[0].value;
+  nameOutput.textContent = nameInput.value;
+  descriptionOutput.textContent = descriptionInput.value;
 
   togglePopup();
 };

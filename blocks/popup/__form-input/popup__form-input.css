@@ -1,13 +1,13 @@
-.form__input {
+.popup__form-input {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-weight: 400;
   font-size: 14px;
-  line-height: 1.21;
-  padding: 0 0 12px;
+  line-height: 1.214;
+  padding: 0 0 10px;
 }
 
-.form__input:focus {
+.popup__form-input:focus {
   outline: none;
   border: 3px solid rgb(98, 151, 250);
   border-radius: 4px;

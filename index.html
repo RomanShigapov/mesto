@@ -84,12 +84,12 @@
       <div class="popup__container">
         <button class="popup__close-button button button_opacity_main" type="button" aria-label="кнопка закрыть форму резактирования профиля"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="form">
-          <fieldset class="form__inputs">
-            <input class="form__input" name="profile-name" placeholder="Введите имя профиля" type="text">
-            <input class="form__input" name="profile-description" placeholder="Введите род деятельности" type="text">
+        <form class="popup__form" name="profile-form">
+          <fieldset class="popup__form-inputs">
+            <input class="popup__form-input popup__form-input_profile-name" name="profile-name" placeholder="Введите имя профиля" type="text">
+            <input class="popup__form-input popup__form-input_profile-description" name="profile-description" placeholder="Введите род деятельности" type="text">
           </fieldset>
-          <button class="form__save-button button button_opacity_high" type="submit">Сохранить</button>
+          <button class="popup__form-save-button button button_opacity_high" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
