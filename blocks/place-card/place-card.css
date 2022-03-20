@@ -8,4 +8,5 @@
   color: black;
   display: grid;
   grid-template-rows: 282px;
+  position: relative;
 }

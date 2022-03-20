@@ -28,6 +28,7 @@
 
 @import url(../blocks/place-card/place-card.css);
   @import url(../blocks/place-card/__picture/place-card__picture.css);
+  @import url(../blocks/place-card/__delete-button/place-card__delete-button.css);
   @import url(../blocks/place-card/__caption/place-card__caption.css);
   @import url(../blocks/place-card/__description/place-card__description.css);
   @import url(../blocks/place-card/__like-button/place-card__like-button.css);
