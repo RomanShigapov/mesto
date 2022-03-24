@@ -33,7 +33,7 @@ function removeCard(button) {
 }
 
 function showCardImage(evt){
-  const popup = document.querySelector('.popup__picture');
+  const popup = document.querySelector('.popup_picture');
   popup.querySelector('.popup__image').src = evt.target.closest('.place-card__picture').src;
   popup.querySelector('.popup__image').alt = evt.target.closest('.place-card__picture').alt;
   popup.querySelector('.popup__image-caption').textContent = evt.target.closest('.place-card').querySelector('.place-card__caption').textContent;
@@ -81,13 +81,13 @@ initialCards.forEach(card => {
 // повесил на кнопки закрытия, функцию закрытия родительских попапов
 popups.forEach(popup => {popup.querySelector('.popup__close-button').addEventListener('click',() => {togglePopup(popup)})});
 // слушатель на кнопку редактирования профиля
-document.querySelector('.profile__edit-button').addEventListener('click',() => {setProfilePopupInputs(); togglePopup(document.querySelector('.popup__profile'));});
+document.querySelector('.profile__edit-button').addEventListener('click',() => {setProfilePopupInputs(); togglePopup(document.querySelector('.popup_profile'));});
 // обработчик сохранения данных из формы редактирования профиля
-document.querySelector('.popup__profile').addEventListener('submit', formProfileSubmitHandler);
+document.querySelector('.popup_profile').addEventListener('submit', formProfileSubmitHandler);
 // слушатель на кнопку добавления карточки места
-document.querySelector('.profile__add-button').addEventListener('click',() => {setNewCardPopupInputs(); togglePopup(document.querySelector('.popup__new-card'));});
+document.querySelector('.profile__add-button').addEventListener('click',() => {setNewCardPopupInputs(); togglePopup(document.querySelector('.popup_new-card'));});
 // обработчик события по добавлению новой карточки
-document.querySelector('.popup__new-card').addEventListener('submit', formNewCardSubmitHandler);
+document.querySelector('.popup_new-card').addEventListener('submit', formNewCardSubmitHandler);
 
 // обработчик закрытия попапа по клику на него
 /*popup.addEventListener('click', function(event){
