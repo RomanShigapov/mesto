@@ -11,13 +11,19 @@ const profileEditForm = document.querySelector('.popup__container'); // форм
 const cardTemplate = document.querySelector('.new-card').content; //template для place-card
 const cardsGrid = document.querySelector('.places__grid-items'); //разметка для вставки карточек
 
+function removeCard(button){
+  const cardToRemove = button.closest('.place-card');
+  cardToRemove.remove();
+}
+
 function addCard(name, link){
   const newCard = cardTemplate.querySelector('.place-card').cloneNode(true);
 
   newCard.querySelector('.place-card__picture').src = link;
   newCard.querySelector('.place-card__picture').alt = 'фото ' + name;
   newCard.querySelector('.place-card__caption').textContent = name;
-  newCard.querySelector('.place-card__like-button').addEventListener('click',(button) => button.target.classList.toggle('place-card__like-button_liked'));
+  newCard.querySelector('.place-card__like-button').addEventListener('click',button => button.target.classList.toggle('place-card__like-button_liked'));
+  newCard.querySelector('.place-card__delete-button').addEventListener('click',button => {removeCard(button.target)});
 
   cardsGrid.append(newCard);
 };
