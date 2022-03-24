@@ -32,9 +32,9 @@
     <footer class="footer page-section">
       <p class="footer__copyright">© 2022. Sk'arh</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup__profile">
       <div class="popup__container">
-        <button class="popup__close-button button button_opacity_main" type="button" aria-label="кнопка закрыть форму резактирования профиля"></button>
+        <button class="popup__close-button button button_opacity_main" type="button" aria-label="кнопка закрыть форму редактирования профиля"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" name="profile-form">
           <fieldset class="popup__form-inputs">
@@ -44,6 +44,26 @@
           <button class="popup__form-save-button button button_opacity_high" type="submit">Сохранить</button>
         </form>
       </div>
+    </div>
+    <div class="popup popup__new-card">
+      <div class="popup__container ">
+        <button class="popup__close-button button button_opacity_main" type="button" aria-label="кнопка закрыть форму добавления новой карточки"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" name="new-card-form">
+          <fieldset class="popup__form-inputs">
+            <input class="popup__form-input popup__form-input_new-card-name" name="new-card-name" placeholder="Название" type="text">
+            <input class="popup__form-input popup__form-input_new-card-image-link" name="new-card-image-link" placeholder="Ссылка на картинку" type="text">
+          </fieldset>
+          <button class="popup__form-save-button button button_opacity_high" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup__picture">
+      <figure class="popup__image-container">
+        <button class="popup__close-button button button_opacity_main" type="button" aria-label="кнопка закрыть просмотр изображения"></button>
+        <img class="popup__image" src="" alt="">
+        <figcaption class="popup__image-caption"></figcaption>
+      </figure>
     </div>
     <template class="new-card">
       <li class="place-card">
