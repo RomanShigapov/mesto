@@ -48,3 +48,4 @@
   @import url(../blocks/popup/__form-save-button/popup__form-save-button.css);
   @import url(../blocks/popup/__image/popup__image.css);
   @import url(../blocks/popup/__image-container/popup__image-container.css);
+  @import url(../blocks/popup/__image-caption/popup__image-caption.css);
