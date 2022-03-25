@@ -1,6 +1,8 @@
 // описание переменных
 const popups = document.querySelectorAll('.popup'); // все попапы
 
+const formNew = document.forms['new-card-form']; //форма добавить новую карточку для ресета параметров
+
 const popupProfile = document.querySelector('.popup_profile');
 const popupNewCard = document.querySelector('.popup_new-card');
 const popupPicture = document.querySelector('.popup_picture');
@@ -20,7 +22,7 @@ const cardsGrid = document.querySelector('.places__grid-items'); //размет�
 // объявление функций
 function createCard(name, link) {
   const newCard = cardTemplate.querySelector('.place-card').cloneNode(true);
-  const cardPicture = newCard.querySelector('.place-card__picture')
+  const cardPicture = newCard.querySelector('.place-card__picture');
 
   cardPicture.src = link;
   cardPicture.alt = 'фото ' + name;
@@ -70,12 +72,6 @@ function formProfileSubmitHandler(evt) {
   togglePopup(evt.target.closest('.popup'));
 };
 
-// обнуление входных значений на форме добавления карточки
-function setNewCardPopupInputs() {
-  cardNameInput.value = '';
-  cardImageLinkInput.value = '';
-}
-
 // функция добавления карточки на страницу
 function formNewCardSubmitHandler(evt) {
   evt.preventDefault();
@@ -96,7 +92,7 @@ document.querySelector('.profile__edit-button').addEventListener('click',() => {
 // обработчик сохранения данных из формы редактирования профиля
 popupProfile.addEventListener('submit', formProfileSubmitHandler);
 // слушатель на кнопку добавления карточки места
-document.querySelector('.profile__add-button').addEventListener('click',() => {setNewCardPopupInputs(); togglePopup(popupNewCard);});
+document.querySelector('.profile__add-button').addEventListener('click',() => {formNew.reset(); togglePopup(popupNewCard);});
 // обработчик события по добавлению новой карточки
 popupNewCard.addEventListener('submit', formNewCardSubmitHandler);
 
