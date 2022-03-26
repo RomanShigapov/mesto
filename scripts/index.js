@@ -25,7 +25,8 @@ function createCard(name, link) {
   const cardPicture = newCard.querySelector('.place-card__picture');
 
   cardPicture.src = link;
-  cardPicture.alt = 'фото ' + name;
+  cardPicture.alt = name + ' фото';
+  cardPicture.title = cardPicture.alt;
   newCard.querySelector('.place-card__caption').textContent = name;
 
   cardPicture.addEventListener('click',showCardImage);
