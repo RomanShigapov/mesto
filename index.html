@@ -38,8 +38,8 @@
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" name="profile-form">
           <fieldset class="popup__form-inputs">
-            <input class="popup__form-input popup__form-input_profile-name" name="profile-name" placeholder="Введите имя профиля" type="text">
-            <input class="popup__form-input popup__form-input_profile-description" name="profile-description" placeholder="Введите род деятельности" type="text">
+            <input class="popup__form-input popup__form-input_profile-name" name="profile-name" placeholder="Введите имя профиля" type="text" required minlength="2" maxlength="40">
+            <input class="popup__form-input popup__form-input_profile-description" name="profile-description" placeholder="Введите род деятельности" type="text" required minlength="2" maxlength="200">
           </fieldset>
           <button class="popup__form-save-button button button_opacity_high" type="submit">Сохранить</button>
         </form>
@@ -51,8 +51,8 @@
         <h2 class="popup__title">Новое место</h2>
         <form class="popup__form" name="new-card-form">
           <fieldset class="popup__form-inputs">
-            <input class="popup__form-input popup__form-input_new-card-name" name="new-card-name" placeholder="Название" type="text">
-            <input class="popup__form-input popup__form-input_new-card-image-link" name="new-card-image-link" placeholder="Ссылка на картинку" type="text">
+            <input class="popup__form-input popup__form-input_new-card-name" name="new-card-name" placeholder="Название" type="text" required minlength="2" maxlength="30">
+            <input class="popup__form-input popup__form-input_new-card-image-link" name="new-card-image-link" placeholder="Ссылка на картинку" type="url" required>
           </fieldset>
           <button class="popup__form-save-button button button_opacity_high" type="submit">Создать</button>
         </form>
@@ -75,7 +75,8 @@
         </div>
       </li>
     </template>
-    <script src="./scripts/cards.js"></script>
-    <script src="./scripts/index.js"></script>
+    <script src="./scripts/cards.js" defer></script>
+    <script src="./scripts/validate.js" defer></script>
+    <script src="./scripts/index.js" defer></script>
   </body>
 </html>
