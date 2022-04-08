@@ -5,6 +5,8 @@ const popups = document.querySelectorAll('.popup'); // все попапы
 const formNew = document.forms['new-card-form']; //форма добавить новую карточку для ресета параметров
 const formEdit = document.forms['profile-form']; //форма редактировать профиль для ресета ошибок
 
+const newCardTemplate = document.querySelector('.new-card').content.querySelector('.place-card');
+
 const popupProfile = document.querySelector('.popup_profile');
 const popupNewCard = document.querySelector('.popup_new-card');
 const popupPicture = document.querySelector('.popup_picture');
@@ -22,35 +24,30 @@ const cardsGrid = document.querySelector('.places__grid-items'); //размет�
 
 // объявление функций
 // ------------------
-// открытие/закрытие попапа чтобы не писать каждый раз toggle('класс')
-function togglePopup(popup) {
-  popup.classList.toggle('popup_opened');
-};
-
 // закрытие по кнопке Esc
 const handleEsc = (evt) => {
-  const openedPopup = document.querySelector('.popup_opened')
-  if (!(openedPopup === null) && (evt.key === 'Escape')) {
+  if (evt.key === 'Escape') {
     evt.preventDefault();
-    togglePopup(openedPopup);
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup);
   };
 };
 
 // открыть попап повесить слушатель по Esc
 const openPopup = (popup) => {
   document.addEventListener("keydown", handleEsc);
-  togglePopup(popup);
+  popup.classList.add('popup_opened');
 };
 
 // закрыть попап снять слушатель по Esc
 const closePopup = (popup) => {
   document.removeEventListener('keydown',handleEsc);
-  togglePopup(popup);
+  popup.classList.remove('popup_opened');
 };
 
 // создать карточку для добавления
 function createCard(name, link) {
-  const newCard = document.querySelector('.new-card').content.querySelector('.place-card').cloneNode(true);
+  const newCard = newCardTemplate.cloneNode(true);
   const cardPicture = newCard.querySelector('.place-card__picture');
 
   cardPicture.src = link;
@@ -94,7 +91,7 @@ function formProfileSubmitHandler(evt) {
 function formNewCardSubmitHandler(evt) {
   evt.preventDefault();
   addCard(createCard(cardNameInput.value,cardImageLinkInput.value),cardsGrid);
-  togglePopup(evt.target.closest('.popup'));
+  closePopup(evt.target.closest('.popup'));
 };
 
 function clearErrors(form) {
