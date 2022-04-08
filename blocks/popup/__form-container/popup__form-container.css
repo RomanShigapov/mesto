@@ -1,0 +1,6 @@
+.popup__form-container {
+  width: 100%;
+  border: none;
+  display: grid;
+  gap: 5px;
+}

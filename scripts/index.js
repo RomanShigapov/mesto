@@ -1,4 +1,5 @@
 // описание переменных
+// -------------------
 const popups = document.querySelectorAll('.popup'); // все попапы
 
 const formNew = document.forms['new-card-form']; //форма добавить новую карточку для ресета параметров
@@ -19,6 +20,34 @@ const cardImageLinkInput = document.querySelector('.popup__form-input_new-card-i
 const cardsGrid = document.querySelector('.places__grid-items'); //разметка для вставки карточек
 
 // объявление функций
+// ------------------
+// открытие/закрытие попапа чтобы не писать каждый раз toggle('класс')
+function togglePopup(popup) {
+  popup.classList.toggle('popup_opened');
+};
+
+// закрытие по кнопке Esc
+const handleEsc = (evt) => {
+  const openedPopup = document.querySelector('.popup_opened')
+  if (!(openedPopup === null) && (evt.key === 'Escape')) {
+    evt.preventDefault();
+    togglePopup(openedPopup);
+  };
+};
+
+// открыть попап повесить слушатель по Esc
+const openPopup = (popup) => {
+  document.addEventListener("keydown", handleEsc);
+  togglePopup(popup);
+};
+
+// закрыть попап снять слушатель по Esc
+const closePopup = (popup) => {
+  document.removeEventListener('keydown',handleEsc);
+  togglePopup(popup);
+};
+
+// создать карточку для добавления
 function createCard(name, link) {
   const newCard = document.querySelector('.new-card').content.querySelector('.place-card').cloneNode(true);
   const cardPicture = newCard.querySelector('.place-card__picture');
@@ -33,20 +62,17 @@ function createCard(name, link) {
 
 // добавление карточки в контейнер
 function addCard(card, container) {container.prepend(card);}
+
 // удаление карточки
 function removeCard(evt) {evt.closest('.place-card').remove();}
 
+// показать карточку
 function showCardImage(evt){
   const cardPicture = evt.target.closest('.place-card__picture');
   popupPicture.querySelector('.popup__image').src = cardPicture.src;
   popupPicture.querySelector('.popup__image').alt = cardPicture.alt;
   popupPicture.querySelector('.popup__image-caption').textContent = evt.target.closest('.place-card').querySelector('.place-card__caption').textContent;
-  togglePopup(popupPicture);
-};
-
-// открытие/закрытие попапа
-function togglePopup(popup) {
-  popup.classList.toggle('popup_opened');
+  openPopup(popupPicture);
 };
 
 // установка текущих значений из профиля в форму редактирования
@@ -60,7 +86,7 @@ function formProfileSubmitHandler(evt) {
 	evt.preventDefault();
   nameOutput.textContent = nameInput.value;
   descriptionOutput.textContent = descriptionInput.value;
-  togglePopup(evt.target.closest('.popup'));
+  closePopup(evt.target.closest('.popup'));
 };
 
 // функция добавления карточки на страницу
@@ -90,20 +116,22 @@ cardsGrid.addEventListener('click', function(evt) {
   }
 });
 
-// повесил на кнопки закрытия, функцию закрытия родительских попапов
+// слушатели для закрытия попапов
 popups.forEach(popup => {
-  popup.querySelector('.popup__close-button').addEventListener('click',() => {togglePopup(popup)});
+  // слушатели закрытия по кнопке можно повесить сразу
+  popup.querySelector('.popup__close-button').addEventListener('click',() => {closePopup(popup)});
+  // слушатели закрытия по клику на затемненную область
   popup.addEventListener('click', (evt) => {
     if (evt.target === evt.currentTarget) {
-      togglePopup(popup);
+      closePopup(popup);
     };
   });
 });
 // слушатель на кнопку редактирования профиля
-document.querySelector('.profile__edit-button').addEventListener('click',() => {setProfilePopupInputs(); togglePopup(popupProfile);});
+document.querySelector('.profile__edit-button').addEventListener('click',() => {setProfilePopupInputs(); openPopup(popupProfile);});
 // обработчик сохранения данных из формы редактирования профиля
 popupProfile.addEventListener('submit', formProfileSubmitHandler);
 // слушатель на кнопку добавления карточки места
-document.querySelector('.profile__add-button').addEventListener('click',() => {formNew.reset(); togglePopup(popupNewCard);});
+document.querySelector('.profile__add-button').addEventListener('click',() => {formNew.reset(); openPopup(popupNewCard);});
 // обработчик события по добавлению новой карточки
 popupNewCard.addEventListener('submit', formNewCardSubmitHandler);
