@@ -3,6 +3,7 @@
 const popups = document.querySelectorAll('.popup'); // все попапы
 
 const formNew = document.forms['new-card-form']; //форма добавить новую карточку для ресета параметров
+const formEdit = document.forms['profile-form']; //форма редактировать профиль для ресета ошибок
 
 const popupProfile = document.querySelector('.popup_profile');
 const popupNewCard = document.querySelector('.popup_new-card');
@@ -96,6 +97,13 @@ function formNewCardSubmitHandler(evt) {
   togglePopup(evt.target.closest('.popup'));
 };
 
+function clearErrors(form) {
+  const inputs = form.querySelectorAll('.popup__form-input');
+  const errors = form.querySelectorAll('.popup__form-input-error');
+  inputs.forEach((input) => {input.classList.remove('popup__form-input_error-style')});
+  errors.forEach((error) => {error.classList.remove('popup__form-input-error_visible')});
+};
+
 // добавим карточки из массива
 initialCards.forEach(card => {
   addCard(createCard(card['name'],card['link']),cardsGrid);
@@ -128,10 +136,10 @@ popups.forEach(popup => {
   });
 });
 // слушатель на кнопку редактирования профиля
-document.querySelector('.profile__edit-button').addEventListener('click',() => {setProfilePopupInputs(); openPopup(popupProfile);});
+document.querySelector('.profile__edit-button').addEventListener('click',() => {setProfilePopupInputs(); clearErrors(formEdit); openPopup(popupProfile);});
 // обработчик сохранения данных из формы редактирования профиля
 popupProfile.addEventListener('submit', formProfileSubmitHandler);
 // слушатель на кнопку добавления карточки места
-document.querySelector('.profile__add-button').addEventListener('click',() => {formNew.reset(); openPopup(popupNewCard);});
+document.querySelector('.profile__add-button').addEventListener('click',() => {formNew.reset(); clearErrors(formNew); openPopup(popupNewCard);});
 // обработчик события по добавлению новой карточки
 popupNewCard.addEventListener('submit', formNewCardSubmitHandler);
