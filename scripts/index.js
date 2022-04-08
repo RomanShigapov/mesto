@@ -137,10 +137,20 @@ popups.forEach(popup => {
   });
 });
 // слушатель на кнопку редактирования профиля
-document.querySelector('.profile__edit-button').addEventListener('click',() => {setProfilePopupInputs(); clearErrors(formEdit); openPopup(popupProfile);});
+document.querySelector('.profile__edit-button').addEventListener('click',() => {
+  setProfilePopupInputs();
+  clearErrors(formEdit);
+  toggleButtonState(Array.from(formEdit.querySelectorAll(validationConfig.inputSelector)),formEdit.querySelector(validationConfig.submitButtonSelector),validationConfig.inactiveButtonClass);
+  openPopup(popupProfile);
+});
 // обработчик сохранения данных из формы редактирования профиля
 popupProfile.addEventListener('submit', formProfileSubmitHandler);
 // слушатель на кнопку добавления карточки места
-document.querySelector('.profile__add-button').addEventListener('click',() => {formNew.reset(); clearErrors(formNew); openPopup(popupNewCard);});
+document.querySelector('.profile__add-button').addEventListener('click',() => {
+  formNew.reset();
+  clearErrors(formNew);
+  toggleButtonState(Array.from(formNew.querySelectorAll(validationConfig.inputSelector)),formNew.querySelector(validationConfig.submitButtonSelector),validationConfig.inactiveButtonClass);
+  openPopup(popupNewCard);
+});
 // обработчик события по добавлению новой карточки
 popupNewCard.addEventListener('submit', formNewCardSubmitHandler);
