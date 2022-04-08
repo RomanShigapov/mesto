@@ -38,11 +38,11 @@ const toggleButtonState = (inputList, button, inactiveButtonClass) => {
 };
 
 // покажем ошибку
-const showError = (form, inputItem, inputErrorClass, errorClass) => {
+const showError = (form, inputItem, errorText, inputErrorClass, errorClass) => {
   const error = form.querySelector(`.${inputItem.name}-error`);
   inputItem.classList.add(inputErrorClass);
   error.classList.add(errorClass);
-  error.textContent = inputItem.validationMessage;
+  error.textContent = errorText;
 };
 
 // скроем ошибку
@@ -56,7 +56,7 @@ const hideError = (form, inputItem, inputErrorClass, errorClass) => {
 // проверка на валидность инпута и показ/скрытие ошибок
 const checkInputValidity = (form, inputItem, inputErrorClass, errorClass) => {
   if (!inputItem.validity.valid) {
-    showError(form, inputItem, inputErrorClass, errorClass);
+    showError(form, inputItem, inputItem.validationMessage, inputErrorClass, errorClass);
   } else {
     hideError(form, inputItem, inputErrorClass, errorClass);
   }
