@@ -55,6 +55,10 @@ function createCard(name, link) {
   cardPicture.title = cardPicture.alt;
   newCard.querySelector('.place-card__caption').textContent = name;
 
+  cardPicture.addEventListener('click',showCardImage);
+  newCard.querySelector('.place-card__like-button').addEventListener('click',button => button.target.classList.toggle('place-card__like-button_liked'));
+  newCard.querySelector('.place-card__delete-button').addEventListener('click',button => {removeCard(button.target)});
+
   return newCard;
 };
 
@@ -107,7 +111,7 @@ initialCards.forEach(card => {
 });
 
 // добавим слушателей на кнопки
-cardsGrid.addEventListener('click', function(evt) {
+/*cardsGrid.addEventListener('click', function(evt) {
   if (evt.target.classList.contains('place-card__picture')) {
     showCardImage(evt);
   }
@@ -119,7 +123,7 @@ cardsGrid.addEventListener('click', function(evt) {
   if (evt.target.classList.contains('place-card__delete-button')) {
     removeCard(evt.target);
   }
-});
+});*/
 
 // слушатели для закрытия попапов
 popups.forEach(popup => {
