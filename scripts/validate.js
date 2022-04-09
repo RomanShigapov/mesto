@@ -50,7 +50,7 @@ const hideError = (form, inputItem, inputErrorClass, errorClass) => {
   const error = form.querySelector(`.${inputItem.name}-error`);
   inputItem.classList.remove(inputErrorClass);
   error.classList.remove(errorClass);
-  error.textContent = '#';
+  error.textContent = '';
 };
 
 // проверка на валидность инпута и показ/скрытие ошибок
