@@ -28,6 +28,12 @@ export class Card {
     this._template.remove();
   }
 
+  _setEventListeners() {
+    this._element.like_button.addEventListener('click',() => this._handleLikeClick());
+    this._element.delete_button.addEventListener('click',() => this._handleDeleteClick());
+    this._element.image.addEventListener('click',() => this._handleImageClick(this._card_data.name, this._card_data.link));
+  }
+
   generateCard() {
     // клонируем шаблон
     this._template = this._getTemplate();
@@ -44,11 +50,8 @@ export class Card {
     this._element.image.alt = this._card_data.name + ' фото';
     this._element.image.title = this._element.image.alt;
 
-    // вешаем слушатели
-    this._element.like_button.addEventListener('click',() => this._handleLikeClick());
-    this._element.delete_button.addEventListener('click',() => this._handleDeleteClick());
-    this._element.image.addEventListener('click',() => this._handleImageClick(this._card_data.name, this._card_data.link));
-    // this._element.image.addEventListener('click',() => {console.log(this._handleImageClick)});
+    this._setEventListeners();
+
     return this._template;
   }
 }
