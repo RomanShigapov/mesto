@@ -2,6 +2,7 @@ export class Card {
   constructor(card_data, template_class, handleImageClick){
     this._card_data = card_data; // получаем данные в виде объекта
     this._template_class = template_class; // сохраняем класс шаблона
+    this._handleImageClick = handleImageClick;
     this._element = { // создаем объект для хранения ссылок на части шаблона для удобства, в них же при инициализации храним классы для их получения позднее
       image: '.place-card__picture',
       caption: '.place-card__caption',
@@ -9,7 +10,6 @@ export class Card {
       liked_class: 'place-card__like-button_liked',
       delete_button: '.place-card__delete-button'
     };
-    this._handleImageClick = handleImageClick;
   }
 
   _getTemplate() {

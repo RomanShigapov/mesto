@@ -62,7 +62,7 @@ const closePopup = (popup) => {
 // функция добавления карточки в контейнер
 function addCardTo(card, container) {
   container.prepend(card);
-}
+};
 
 // показать карточку
 function showCardImage(name, link) {
@@ -76,7 +76,7 @@ function showCardImage(name, link) {
 function setProfilePopupInputs() {
   nameInput.value = nameOutput.textContent;
 	descriptionInput.value = descriptionOutput.textContent;
-}
+};
 
 // сохранения данных из формы редактирования на основную страницу
 function formProfileSubmitHandler(evt) {
@@ -104,7 +104,7 @@ function clearErrors(form) {
 // рабочая часть скрипта
 // загрузка начальных карточек
 initialCards.reverse().forEach(item => {
-  const NewCard = new Card(item,'.new-card');
+  const NewCard = new Card(item,'.new-card',showCardImage);
   addCardTo(NewCard.generateCard(),cardsGrid);
 });
 
@@ -131,7 +131,6 @@ document.querySelector('.profile__edit-button').addEventListener('click',() => {
   setProfilePopupInputs();
   clearErrors(formEdit);
   formValidatorsList['profile-form'].disableSubmitButton();
-  // toggleButtonState(Array.from(formEdit.querySelectorAll(validationConfig.inputSelector)),formEdit.querySelector(validationConfig.submitButtonSelector),validationConfig.inactiveButtonClass);
   openPopup(popupProfile);
 });
 // обработчик сохранения данных из формы редактирования профиля
@@ -141,7 +140,6 @@ document.querySelector('.profile__add-button').addEventListener('click',() => {
   formNew.reset();
   clearErrors(formNew);
   formValidatorsList['new-card-form'].disableSubmitButton();
-  // toggleButtonState(Array.from(formNew.querySelectorAll(validationConfig.inputSelector)),formNew.querySelector(validationConfig.submitButtonSelector),validationConfig.inactiveButtonClass);
   openPopup(popupNewCard);
 });
 // обработчик события по добавлению новой карточки
