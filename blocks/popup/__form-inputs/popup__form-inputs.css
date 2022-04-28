@@ -4,7 +4,6 @@
   width: 100%;
   border: none;
   display: grid;
-  /* gap: calc(30px - 5px - 15px); */
 }
 
 @media screen and (max-width: 540px) {
