@@ -1,42 +1,28 @@
-// связываем модули
-import {initialCards} from './initialCards.js';
-import {Card} from './Card.js';
-import {FormValidator} from './FormValidator.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import {
+   initialCards
+  ,popups
+  ,popupOpened_class
+  ,formNew
+  ,popupProfile
+  ,popupNewCard
+  ,popupPicture
+  ,popupPicture_image
+  ,popupPicture_image_caption
+  ,nameInput
+  ,descriptionInput
+  ,nameOutput
+  ,descriptionOutput
+  ,cardNameInput
+  ,cardImageLinkInput
+  ,cardsGrid
+  ,formValidatorsList
+  ,validationConfig
+} from '../utils/constants.js';
 
 // объявляем переменные
-const popups = document.querySelectorAll('.popup'); // все попапы
-const popupOpened_class = 'popup_opened';
 
-const formNew = document.forms['new-card-form']; //форма добавить новую карточку для ресета параметров
-
-const popupProfile = document.querySelector('.popup_profile');
-const popupNewCard = document.querySelector('.popup_new-card');
-const popupPicture = document.querySelector('.popup_picture');
-
-const popupPicture_image = popupPicture.querySelector('.popup__image');
-const popupPicture_image_caption = popupPicture.querySelector('.popup__image-caption');
-
-const nameInput = document.querySelector('.popup__form-input_profile-name'); // поле ввода имени профиля на форме редактирования
-const descriptionInput = document.querySelector('.popup__form-input_profile-description'); // поле ввода описания профиля на форме редактирования
-
-const nameOutput = document.querySelector('.profile__name'); // имя профиля на странице
-const descriptionOutput = document.querySelector('.profile__description'); // описание профиля на странице
-
-const cardNameInput = document.querySelector('.popup__form-input_new-card-name'); // поле ввода имени карточки
-const cardImageLinkInput = document.querySelector('.popup__form-input_new-card-image-link'); // поле ввода url картинки для карточки
-
-const cardsGrid = document.querySelector('.places__grid-items'); //получаем элемент разметки для вставки карточек
-
-const formValidatorsList = {};
-
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__form-input',
-  submitButtonSelector: '.popup__form-save-button',
-  inactiveButtonClass: 'popup__form-save-button_disabled',
-  inputErrorClass: 'popup__form-input_error-style',
-  errorClass: 'popup__form-input-error_visible'
-};
 
 // объявление функций
 const handleEsc = (evt) => {

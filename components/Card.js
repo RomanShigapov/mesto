@@ -1,4 +1,4 @@
-export class Card {
+export default class Card {
   constructor(card_data, template_class, handleImageClick){
     this._card_data = card_data; // получаем данные в виде объекта
     this._template_class = template_class; // сохраняем класс шаблона
