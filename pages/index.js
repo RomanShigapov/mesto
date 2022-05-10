@@ -1,8 +1,17 @@
+// импорт классов
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
+// импорт карточек и конфигураторов
+import initialCards from '../utils/initialCards.js';
+import validationConfig from '../utils/validationConfig.js';
+import popupConfig from '../utils/popupConfig.js';
+// импорт констант
 import {
-   initialCards
-  ,popups
+   popups
   ,popupOpened_class
   ,formNew
   ,popupProfile
@@ -18,16 +27,24 @@ import {
   ,cardImageLinkInput
   ,cardsGrid
   ,formValidatorsList
-  ,validationConfig
 } from '../utils/constants.js';
 
-// объявляем переменные
+
+const popupWithImage = new PopupWithImage(
+  {
+     popupConfig
+    ,popup: '.popup_picture'
+  }
+  ,'.popup__image'
+  ,'.popup__image-caption'
+);
+
 
 
 // объявление функций
 const handleEsc = (evt) => {
   if (evt.key === 'Escape') {
-    evt.preventDefault();
+    // evt.preventDefault();
     const openedPopup = document.querySelector('.' + popupOpened_class)
     closePopup(openedPopup);
   };
