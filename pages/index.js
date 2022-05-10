@@ -8,43 +8,33 @@ import UserInfo from '../components/UserInfo.js';
 // импорт карточек и конфигураторов
 import initialCards from '../utils/initialCards.js';
 import validationConfig from '../utils/validationConfig.js';
-import popupConfig from '../utils/popupConfig.js';
 // импорт констант
 import {
-   popups
-  ,popupOpened_class
-  ,formNew
-  ,popupProfile
-  // ,popupNewCard
-  ,popupPicture
-  ,popupPicture_image
-  ,popupPicture_image_caption
-  ,nameInput
+   nameInput
   ,descriptionInput
-  ,nameOutput
-  ,descriptionOutput
-  ,cardNameInput
-  ,cardImageLinkInput
-  ,cardsGrid
   ,formValidatorsList
 } from '../utils/constants.js';
 
+// экземпляр класса для работы с данными пользователя
+const userInfo = new UserInfo({
+  profile_name: '.profile__name'
+ ,profile_description: '.profile__description'
+});
+
+// экземпляр попапа для формы редактирования данных пользователя
+const popupProfile = new PopupWithForm(
+   '.popup_profile'
+  ,(data) => {userInfo.setUserInfo(data)}
+);
+
+// экземпляр попапа для формы добавления карточки на форму
+const popupNewCard = new PopupWithForm(
+   '.popup_new-card'
+  ,(data) => {renderCards.addItem(createCard(data))}
+);
+
+// экземпляр попапа для показа карточки
 const popupWithImage = new PopupWithImage('.popup_picture');
-popupWithImage.setEventListeners();
-
-// const popupNewCard = new PopupWithForm('.popup_new-card');
-// popupNewCard.setEventListeners();
-
-// показать карточку по клику для передачи в создание карточки
-function showCardImage(name, link) {
-  popupWithImage.open({name, link});
-}
-
-// функция создания карточки
-function createCard(item) {
-  const newCard = new Card(item,'.new-card',showCardImage);
-  return newCard.generateCard();
-}
 
 // экземпляр Section для отрисовки карточек
 const renderCards = new Section(
@@ -55,78 +45,48 @@ const renderCards = new Section(
   '.places__grid-items'
 );
 
-// отрисовка начальных карточек
-renderCards.rendered();
+// функция показа карточки по клику для мягкого связывания попапа и карточки
+function showCardImage(name, link) {
+  popupWithImage.open({name, link});
+};
 
-// показать карточку
-/*function showCardImage(name, link) {
-  popupPicture_image.src = link;
-  popupPicture_image.alt = name + 'фото';
-  popupPicture_image_caption.textContent = name;
-  openPopup(popupPicture);
+// функция создания карточки
+function createCard(item) {
+  const newCard = new Card(item,'.new-card',showCardImage);
+  return newCard.generateCard();
 };
 
 // установка текущих значений из профиля в форму редактирования
-function setProfilePopupInputs() {
-  nameInput.value = nameOutput.textContent;
-	descriptionInput.value = descriptionOutput.textContent;
+function setProfilePopupInputs({ profile_name, profile_description }) {
+  nameInput.value = profile_name;
+	descriptionInput.value = profile_description;
 };
 
-// сохранения данных из формы редактирования на основную страницу
-function handleProfileFormSubmit(evt) {
-	evt.preventDefault();
-  nameOutput.textContent = nameInput.value;
-  descriptionOutput.textContent = descriptionInput.value;
-  closePopup(evt.target.closest('.popup'));
-};
+// отрисовка начальных карточек
+renderCards.rendered();
 
-// функция добавления карточки на страницу
-function handleNewCardFormSubmit(evt) {
-  evt.preventDefault();
-  addCardTo(createCard({name: cardNameInput.value, link: cardImageLinkInput.value}),cardsGrid);
-  closePopup(evt.target.closest('.popup'));
-};*/
-
-// рабочая часть скрипта
-// загрузка начальных карточек
-/*initialCards.reverse().forEach(item => {
-  addCardTo(createCard(item),cardsGrid);
-});
-*/
 // валидация форм
-/*
 Array.from(document.forms).forEach(form => {
   const newFormValidator = new FormValidator(validationConfig, form);
   formValidatorsList[form.getAttribute('name')] = newFormValidator;
   newFormValidator.enableValidation();
 });
 
-// слушатели для закрытия попапов
-popups.forEach(popup => {
-  // слушатели закрытия по кнопке можно повесить сразу
-  popup.querySelector('.popup__close-button').addEventListener('click',() => {closePopup(popup)});
-  // слушатели закрытия по клику на затемненную область
-  popup.addEventListener('click', (evt) => {
-    if (evt.target === evt.currentTarget) {
-      closePopup(popup);
-    };
-  });
-});
+// инициализация слушателей
+popupWithImage.setEventListeners();
+
+popupProfile.setEventListeners();
 // слушатель на кнопку редактирования профиля
 document.querySelector('.profile__edit-button').addEventListener('click',() => {
-  setProfilePopupInputs();
+  setProfilePopupInputs(userInfo.getUserInfo());
   formValidatorsList['profile-form'].resetValidation();
-  openPopup(popupProfile);
+  popupProfile.open();
 });
-// обработчик сохранения данных из формы редактирования профиля
-popupProfile.addEventListener('submit', handleProfileFormSubmit);
+
+popupNewCard.setEventListeners();
 // слушатель на кнопку добавления карточки места
 document.querySelector('.profile__add-button').addEventListener('click',() => {
-  formNew.reset();
   formValidatorsList['new-card-form'].resetValidation();
-  openPopup(popupNewCard);
+  popupNewCard.open();
 });
-// обработчик события по добавлению новой карточки
-popupNewCard.addEventListener('submit', handleNewCardFormSubmit);
-*/
 
