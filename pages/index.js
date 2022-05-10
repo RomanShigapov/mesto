@@ -15,7 +15,7 @@ import {
   ,popupOpened_class
   ,formNew
   ,popupProfile
-  ,popupNewCard
+  // ,popupNewCard
   ,popupPicture
   ,popupPicture_image
   ,popupPicture_image_caption
@@ -29,38 +29,16 @@ import {
   ,formValidatorsList
 } from '../utils/constants.js';
 
+const popupWithImage = new PopupWithImage('.popup_picture');
+popupWithImage.setEventListeners();
 
-const popupWithImage = new PopupWithImage(
-  {
-     popupConfig
-    ,popup: '.popup_picture'
-  }
-  ,'.popup__image'
-  ,'.popup__image-caption'
-);
+// const popupNewCard = new PopupWithForm('.popup_new-card');
+// popupNewCard.setEventListeners();
 
-
-
-// объявление функций
-const handleEsc = (evt) => {
-  if (evt.key === 'Escape') {
-    // evt.preventDefault();
-    const openedPopup = document.querySelector('.' + popupOpened_class)
-    closePopup(openedPopup);
-  };
-};
-
-// открыть попап повесить слушатель по Esc
-const openPopup = (popup) => {
-  document.addEventListener("keydown", handleEsc);
-  popup.classList.add(popupOpened_class);
-};
-
-// закрыть попап снять слушатель по Esc
-const closePopup = (popup) => {
-  document.removeEventListener('keydown',handleEsc);
-  popup.classList.remove(popupOpened_class);
-};
+// показать карточку по клику для передачи в создание карточки
+function showCardImage(name, link) {
+  popupWithImage.open({name, link});
+}
 
 // функция создания карточки
 function createCard(item) {
@@ -68,13 +46,20 @@ function createCard(item) {
   return newCard.generateCard();
 }
 
-// функция добавления карточки в контейнер
-function addCardTo(card, container) {
-  container.prepend(card);
-};
+// экземпляр Section для отрисовки карточек
+const renderCards = new Section(
+  {
+     items: initialCards
+    ,renderer: createCard
+  },
+  '.places__grid-items'
+);
+
+// отрисовка начальных карточек
+renderCards.rendered();
 
 // показать карточку
-function showCardImage(name, link) {
+/*function showCardImage(name, link) {
   popupPicture_image.src = link;
   popupPicture_image.alt = name + 'фото';
   popupPicture_image_caption.textContent = name;
@@ -100,15 +85,16 @@ function handleNewCardFormSubmit(evt) {
   evt.preventDefault();
   addCardTo(createCard({name: cardNameInput.value, link: cardImageLinkInput.value}),cardsGrid);
   closePopup(evt.target.closest('.popup'));
-};
+};*/
 
 // рабочая часть скрипта
 // загрузка начальных карточек
-initialCards.reverse().forEach(item => {
+/*initialCards.reverse().forEach(item => {
   addCardTo(createCard(item),cardsGrid);
 });
-
+*/
 // валидация форм
+/*
 Array.from(document.forms).forEach(form => {
   const newFormValidator = new FormValidator(validationConfig, form);
   formValidatorsList[form.getAttribute('name')] = newFormValidator;
@@ -142,6 +128,5 @@ document.querySelector('.profile__add-button').addEventListener('click',() => {
 });
 // обработчик события по добавлению новой карточки
 popupNewCard.addEventListener('submit', handleNewCardFormSubmit);
-
-
+*/
 
