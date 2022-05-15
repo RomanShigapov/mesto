@@ -18,8 +18,8 @@ import {
 
 // экземпляр класса для работы с данными пользователя
 const userInfo = new UserInfo({
-  profile_name: '.profile__name'
- ,profile_description: '.profile__description'
+  name: '.profile__name'
+ ,description: '.profile__description'
 });
 
 // экземпляр попапа для формы редактирования данных пользователя
@@ -58,9 +58,9 @@ function createCard(item) {
 };
 
 // установка текущих значений из профиля в форму редактирования
-function setProfilePopupInputs({ profile_name, profile_description }) {
-  nameInput.value = profile_name;
-	descriptionInput.value = profile_description;
+function setProfilePopupInputs({ name, description }) {
+  nameInput.value = name;
+	descriptionInput.value = description;
 };
 
 // отрисовка начальных карточек
