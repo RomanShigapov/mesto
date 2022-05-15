@@ -4,8 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png">
-    <link rel="stylesheet" href="pages/index.css">
-    <meta name="description" content="проектная работа №5 Романа Шигапова на Яндекс.Практикум">
+    <meta name="description" content="проектная работа №8 Романа Шигапова на Яндекс.Практикум">
     <meta name="keywords" content="html, css, responsive web, java script">
     <meta name="author" content="Роман Шигапов">
     <meta name="author" content="Шигапов Роман">
@@ -18,7 +17,7 @@
     </header>
     <main class="content page-section">
       <section class="profile" aria-label="Секция профиля пользователя">
-        <img class="profile__avatar" src="./images/profile.jpg" alt="аватар профиля">
+        <img class="profile__avatar" src="<%=require('../images/profile.jpg')%>" alt="аватар профиля">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button class="profile__edit-button button button_opacity_main" type="button" aria-label="вызов формы редактирования профиля"></button>
@@ -89,6 +88,5 @@
         </div>
       </li>
     </template>
-    <script type="module" src="./pages/index.js" defer></script>
   </body>
 </html>
