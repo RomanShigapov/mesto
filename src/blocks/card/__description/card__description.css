@@ -1,4 +1,4 @@
-.place-card__description {
+.card__description {
   width: 242px;
   display: grid;
   grid-template-columns: calc(242px - 30px - 22px) 22px;

@@ -1,0 +1,7 @@
+.card__like-block {
+  width: 22;
+  display: grid;
+  grid-template-columns: 22px;
+  gap: 3px;
+  justify-items: center;
+}

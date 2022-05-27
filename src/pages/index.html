@@ -79,12 +79,15 @@
       </figure>
     </div>
     <template class="new-card">
-      <li class="place-card">
-        <img class="place-card__picture" src="#" alt="" title="">
-        <button class="place-card__delete-button button button_opacity_main"></button>
-        <div class="place-card__description">
-          <h2 class="place-card__caption"></h2>
-          <button class="place-card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк на карточке"></button>
+      <li class="card">
+        <img class="card__picture" src="#" alt="" title="">
+        <button class="card__delete-button button button_opacity_main"></button>
+        <div class="card__description">
+          <h2 class="card__caption"></h2>
+          <div class="card__like-block">
+            <button class="card__like-button button button_opacity_low" type="button" aria-label="кнопка лайк на карточке"></button>
+            <span class="card__likes">0</span>
+          </div>
         </div>
       </li>
     </template>

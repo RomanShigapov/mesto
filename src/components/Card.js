@@ -4,11 +4,11 @@ export default class Card {
     this._template_class = template_class; // сохраняем класс шаблона
     this._handleImageClick = handleImageClick;
     this._element = { // создаем объект для хранения ссылок на части шаблона для удобства, в них же при инициализации храним классы для их получения позднее
-      image: '.place-card__picture',
-      caption: '.place-card__caption',
-      like_button: '.place-card__like-button',
-      liked_class: 'place-card__like-button_liked',
-      delete_button: '.place-card__delete-button'
+      image: '.card__picture',
+      caption: '.card__caption',
+      like_button: '.card__like-button',
+      liked_class: 'card__like-button_liked',
+      delete_button: '.card__delete-button'
     };
   }
 
