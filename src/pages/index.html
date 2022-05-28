@@ -17,7 +17,9 @@
     </header>
     <main class="content page-section">
       <section class="profile" aria-label="Секция профиля пользователя">
-        <img class="profile__avatar" src="<%=require('../images/profile.jpg')%>" alt="аватар профиля">
+        <button class="profile__replace-avatar" type="button">
+          <img class="profile__avatar" src="<%=require('../images/profile.jpg')%>" alt="аватар профиля">
+        </button>
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button class="profile__edit-button button button_opacity_main" type="button" aria-label="вызов формы редактирования профиля"></button>

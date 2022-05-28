@@ -1,0 +1,31 @@
+.profile__replace-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  line-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.profile__replace-avatar::after {
+  content: "";
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, .8);
+  background-image: url(../../../images/icons/edit_avatar.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 26px 26px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile__replace-avatar:hover::after {
+  opacity: 1;
+}
