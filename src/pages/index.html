@@ -80,6 +80,30 @@
         <figcaption class="popup__image-caption"></figcaption>
       </figure>
     </div>
+    <div class="popup popup_replace-avatar popup_overlay-opacity_main">
+      <div class="popup__container ">
+        <button class="popup__close-button button button_opacity_main" type="button" aria-label="кнопка закрыть форму оновления аватара"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="popup__form" name="replace-avatar">
+          <fieldset class="popup__form-inputs">
+            <div class="popup__form-container">
+              <input class="popup__form-input popup__form-input_new-card-image-link" name="link" placeholder="Ссылка на картинку" type="url" required>
+              <span class="popup__form-input-error link-error"></span>
+            </div>
+          </fieldset>
+          <button class="popup__form-save-button button button_opacity_high" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_delete-card popup_overlay-opacity_high">
+      <div class="popup__container">
+        <button class="popup__close-button button button_opacity_main" type="button" aria-label="кнопка закрыть форму удаления карточки"></button>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <form class="popup__form" name="profile-form">
+          <button class="popup__form-save-button button button_opacity_high" type="submit">Да</button>
+        </form>
+      </div>
+    </div>
     <template class="new-card">
       <li class="card">
         <img class="card__picture" src="#" alt="" title="">
