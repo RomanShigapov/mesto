@@ -6,6 +6,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 // импорт карточек и конфигураторов
 import initialCards from '../utils/initialCards.js';
 import validationConfig from '../utils/validationConfig.js';
@@ -14,10 +15,24 @@ import {
    nameInput
   ,descriptionInput
   ,formValidatorsList
+  ,api_options
 } from '../utils/constants.js';
 
+const mesto_api = new Api(api_options);
+
+console.log(mesto_api.getCardsList());
+
+/*mesto_api.getCardsList().forEach(element => {
+  console.log(element);
+});
+
+// mesto_api.getCardsList();
+/*mesto_api.getCardsList().forEach(item => {
+  console.log(item);
+});*/
+
 // экземпляр класса для работы с данными пользователя
-const userInfo = new UserInfo({
+/*const userInfo = new UserInfo({
   name: '.profile__name'
  ,description: '.profile__description'
 });
@@ -40,7 +55,7 @@ const popupWithImage = new PopupWithImage('.popup_picture');
 // экземпляр Section для отрисовки карточек
 const renderCards = new Section(
   {
-     items: initialCards
+     items: mesto_api.getCardsList() //initialCards
     ,renderer: createCard
   },
   '.places__grid-items'
@@ -64,7 +79,7 @@ function setProfilePopupInputs({ name, description }) {
 };
 
 // отрисовка начальных карточек
-renderCards.rendered();
+// renderCards.rendered();
 
 // валидация форм
 Array.from(document.forms).forEach(form => {
@@ -90,4 +105,4 @@ document.querySelector('.profile__add-button').addEventListener('click',() => {
   formValidatorsList['new-card-form'].resetValidation();
   popupNewCard.open();
 });
-
+*/
