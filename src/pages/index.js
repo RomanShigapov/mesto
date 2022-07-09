@@ -49,31 +49,66 @@ function createCard(item) {
 mesto_api.getUserInfo()
   .then(user_data => {
     userInfo.setUserInfo({
-       name: user_data.name
+      name: user_data.name
       ,description: user_data.about
+      ,pic_url: user_data.avatar
     });
-    userInfo.setUserPicture(user_data.avatar);
-  }
-  );
+  });
 
 // экземпляр класса для работы с данными пользователя
-const userInfo = new UserInfo({
-  name: '.profile__name'
-  ,description: '.profile__description'
-  ,avatar: '.profile__avatar'
-});
-
+const userInfo = new UserInfo(
+  {
+    name: '.profile__name'
+    ,description: '.profile__description'
+    ,avatar: '.profile__avatar'
+    ,avatar_button: '.profile__replace-avatar'
+  }
+);
 
 // экземпляр попапа для формы редактирования данных пользователя
 const popupProfile = new PopupWithForm(
    '.popup_profile'
-  ,(data) => {userInfo.setUserInfo(data)}
+  ,(data) => {
+    // начать лоадер
+    mesto_api.setUserInfo({
+      name: data.name
+      ,about: data.description
+    })
+    .then(() => {
+      userInfo.setUserInfo(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      // завершить лоадер
+    });
+  }
 );
 
 // экземпляр попапа для формы добавления карточки на форму
 const popupNewCard = new PopupWithForm(
    '.popup_new-card'
   ,(data) => {renderCards.addItem(createCard(data))}
+);
+
+const popupAvatar = new PopupWithForm(
+  '.popup_replace-avatar'
+  ,(data) => {
+    // начать лоадер
+    // не здорово что наш сервер не проверяет доступность ссылки на профиль, наверное нужно наворотить еще и проверку url перед тем как ее грузить на сервер.
+    mesto_api.setUserPic(data.link)
+    .then(() => {
+      console.log('loading new avatar picture is successful');
+      userInfo.setUserPic(data.link);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      // завершить лоадер
+    });
+  }
 );
 
 // экземпляр попапа для показа карточки
@@ -96,7 +131,6 @@ Array.from(document.forms).forEach(form => {
 
 // инициализация слушателей
 popupWithImage.setEventListeners();
-
 popupProfile.setEventListeners();
 // слушатель на кнопку редактирования профиля
 document.querySelector('.profile__edit-button').addEventListener('click',() => {
@@ -104,6 +138,13 @@ document.querySelector('.profile__edit-button').addEventListener('click',() => {
   formValidatorsList['profile-form'].resetValidation();
   popupProfile.open();
 });
+
+popupAvatar.setEventListeners();
+document.querySelector('.profile__replace-avatar').addEventListener('click',() => {
+  formValidatorsList['replace-avatar-form'].resetValidation();
+  popupAvatar.open();
+});
+
 
 popupNewCard.setEventListeners();
 // слушатель на кнопку добавления карточки места

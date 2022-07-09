@@ -18,12 +18,12 @@
     <main class="content page-section">
       <section class="profile" aria-label="Секция профиля пользователя">
         <button class="profile__replace-avatar" type="button">
-          <img class="profile__avatar" src="<%=require('../images/profile.jpg')%>" alt="аватар профиля">
+          <img class="profile__avatar" src="<%=require('../images/profile.jpg')%>" alt="аватар">
         </button>
         <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name">Загрузка...</h1>
           <button class="profile__edit-button button button_opacity_main" type="button" aria-label="вызов формы редактирования профиля"></button>
-          <p class="profile__description">Исследователь океана</p>
+          <p class="profile__description"></p>
         </div>
         <button class="profile__add-button button button_opacity_main" type="button" aria-label="выхов формы добавления карточки места"></button>
       </section>
@@ -84,7 +84,7 @@
       <div class="popup__container ">
         <button class="popup__close-button button button_opacity_main" type="button" aria-label="кнопка закрыть форму оновления аватара"></button>
         <h2 class="popup__title">Обновить аватар</h2>
-        <form class="popup__form" name="replace-avatar">
+        <form class="popup__form" name="replace-avatar-form">
           <fieldset class="popup__form-inputs">
             <div class="popup__form-container">
               <input class="popup__form-input popup__form-input_new-card-image-link" name="link" placeholder="Ссылка на картинку" type="url" required>

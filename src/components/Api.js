@@ -56,6 +56,24 @@ export default class Api {
   }
 
   // обновление аватара пользователя
-  // setUserPic() {}
+  setUserPic(avatar) {
+    return fetch(`${this.base_url}${this.group_id}/users/me/avatar`,{
+      method: 'PATCH'
+      ,headers: {
+        authorization: this.auth_token
+        ,'Content-Type': 'application/json'
+      }
+      ,body: JSON.stringify({
+        avatar
+      })
+    })
+    .then(res => this.useServerResponse(res));
+    /*.then(res => { // Лишнее он либо вернет что заменил ссылку на аватар либо что это не было ссылкой, что при проверке поля невозможно
+      if (res.ok) {
+        return { status: res.status};
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });*/
+  }
 
 }
