@@ -1,22 +1,35 @@
 export default class Api {
-  constructor({ group_id, auth_token, base_url}) {
-    this.group_id = group_id;
-    this.auth_token = auth_token;
-    this.base_url = base_url;
+  constructor(config) {
+    this.group_id = config.group_id;
+    this.auth_token = config.auth_token;
+    this.base_url = config.base_url;
   }
 
   // получение карточек с сервера
   getCardsList() {
-    fetch(`${this.base_url}${this.group_id}/cards`, {
+    return fetch(`${this.base_url}${this.group_id}/cards`, {
       headers: {
         authorization: this.auth_token
       }
-    }) // туплю с результатом еще раз пройти часть в тренажере и досмотреть вебинар
-    .then(res => res.json())
-    .then((result) => {
-      return result;
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
     });
   }
+
+
+    /*.then(res => res.json())
+    .then((result) => {
+    console.log(result);
+    });*/
+
+
+  /*
+    .then(res.ok ? console.log(res.json()) : Promise.reject(`Ошибка: ${res.status}`));
+  }*/
 
   // добавление новой карточки
   // addCard() {}
@@ -35,7 +48,5 @@ export default class Api {
 
   // обновление аватара пользователя
   // setUserPic() {}
-
-
 
 }

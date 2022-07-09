@@ -20,16 +20,28 @@ import {
 
 const mesto_api = new Api(api_options);
 
-console.log(mesto_api.getCardsList());
+mesto_api.getCardsList()
+  .then(cards => {
+    const renderCards = new Section(
+      {
+       items: cards //initialCards
+      ,renderer: createCard
+      }
+      ,'.places__grid-items'
+    );
+    renderCards.rendered();
+  });
 
-/*mesto_api.getCardsList().forEach(element => {
-  console.log(element);
-});
+// функция показа карточки по клику для мягкого связывания попапа и карточки
+function showCardImage(name, link) {
+  popupWithImage.open({name, link});
+};
 
-// mesto_api.getCardsList();
-/*mesto_api.getCardsList().forEach(item => {
-  console.log(item);
-});*/
+// функция создания карточки
+function createCard(item) {
+  const newCard = new Card(item,'.new-card',showCardImage);
+  return newCard.generateCard();
+};
 
 // экземпляр класса для работы с данными пользователя
 /*const userInfo = new UserInfo({
