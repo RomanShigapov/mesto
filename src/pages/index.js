@@ -23,13 +23,14 @@ const mesto_api = new Api(api_options);
 // заберем с сервера карточки и отрисуем их
 mesto_api.getCardsList()
   .then(cards => {
-    const renderCards = new Section(
-      {
+    // экземпляр Section для отрисовки карточек
+    const renderCards = new Section({
        items: cards
       ,renderer: createCard
       }
       ,'.places__grid-items'
     );
+    // отрисовка карточек c сервера
     renderCards.rendered();
   });
 
@@ -51,21 +52,18 @@ mesto_api.getUserInfo()
        name: user_data.name
       ,description: user_data.about
     });
+    userInfo.setUserPicture(user_data.avatar);
   }
   );
-
-
-/*mesto_api.setUserInfo({
-  name: 'Test testovich'
-  ,about: 'testing api'
-});*/
 
 // экземпляр класса для работы с данными пользователя
 const userInfo = new UserInfo({
   name: '.profile__name'
- ,description: '.profile__description'
+  ,description: '.profile__description'
+  ,avatar: '.profile__avatar'
 });
-/*
+
+
 // экземпляр попапа для формы редактирования данных пользователя
 const popupProfile = new PopupWithForm(
    '.popup_profile'
@@ -81,25 +79,6 @@ const popupNewCard = new PopupWithForm(
 // экземпляр попапа для показа карточки
 const popupWithImage = new PopupWithImage('.popup_picture');
 
-// экземпляр Section для отрисовки карточек
-const renderCards = new Section(
-  {
-     items: mesto_api.getCardsList() //initialCards
-    ,renderer: createCard
-  },
-  '.places__grid-items'
-);
-
-// функция показа карточки по клику для мягкого связывания попапа и карточки
-function showCardImage(name, link) {
-  popupWithImage.open({name, link});
-};
-
-// функция создания карточки
-function createCard(item) {
-  const newCard = new Card(item,'.new-card',showCardImage);
-  return newCard.generateCard();
-};
 
 // установка текущих значений из профиля в форму редактирования
 function setProfilePopupInputs({ name, description }) {
@@ -107,8 +86,6 @@ function setProfilePopupInputs({ name, description }) {
 	descriptionInput.value = description;
 };
 
-// отрисовка начальных карточек
-// renderCards.rendered();
 
 // валидация форм
 Array.from(document.forms).forEach(form => {
@@ -134,4 +111,3 @@ document.querySelector('.profile__add-button').addEventListener('click',() => {
   formValidatorsList['new-card-form'].resetValidation();
   popupNewCard.open();
 });
-*/
