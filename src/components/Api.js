@@ -5,14 +5,19 @@ export default class Api {
     this.base_url = config.base_url;
   }
 
+  // вынес одинаковый обработчик ответа сервера в отдельную функцию
+  useServerResponse(res) {
+    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
+  }
+
   // получение карточек с сервера
   getCardsList() {
     return fetch(`${this.base_url}${this.group_id}/cards`,{
       headers: {
         authorization: this.auth_token
       }
-    }) // наконец пригодилось сокращенная запись if
-    .then(res => {return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)});
+    })
+    .then(res => this.useServerResponse(res));
   }
 
   // добавление новой карточки
@@ -30,12 +35,25 @@ export default class Api {
       headers: {
         authorization: this.auth_token
       }
-    }) // одинаковый код обработки... надо вынести отдельно
-    .then(res => {return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)});
+    })
+    .then(res => this.useServerResponse(res));
   }
 
   // редактирование данных пользователя
-  // setUserInfo() {}
+  setUserInfo({name, about}) {
+    return fetch(`${this.base_url}${this.group_id}/users/me`,{
+      method: 'PATCH'
+      ,headers: {
+        authorization: this.auth_token
+        ,'Content-Type': 'application/json'
+      }
+      ,body: JSON.stringify({
+        name,
+        about
+      })
+    })
+    .then(res => this.useServerResponse(res));
+  }
 
   // обновление аватара пользователя
   // setUserPic() {}

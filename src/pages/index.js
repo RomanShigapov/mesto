@@ -54,6 +54,12 @@ mesto_api.getUserInfo()
   }
   );
 
+
+/*mesto_api.setUserInfo({
+  name: 'Test testovich'
+  ,about: 'testing api'
+});*/
+
 // экземпляр класса для работы с данными пользователя
 const userInfo = new UserInfo({
   name: '.profile__name'
