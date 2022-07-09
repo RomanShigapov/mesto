@@ -20,11 +20,12 @@ import {
 
 const mesto_api = new Api(api_options);
 
+// заберем с сервера карточки и отрисуем их
 mesto_api.getCardsList()
   .then(cards => {
     const renderCards = new Section(
       {
-       items: cards //initialCards
+       items: cards
       ,renderer: createCard
       }
       ,'.places__grid-items'
@@ -43,12 +44,22 @@ function createCard(item) {
   return newCard.generateCard();
 };
 
+// подтянем данные о пользователе с сервера и установим их на страницу.
+mesto_api.getUserInfo()
+  .then(user_data => {
+    userInfo.setUserInfo({
+       name: user_data.name
+      ,description: user_data.about
+    });
+  }
+  );
+
 // экземпляр класса для работы с данными пользователя
-/*const userInfo = new UserInfo({
+const userInfo = new UserInfo({
   name: '.profile__name'
  ,description: '.profile__description'
 });
-
+/*
 // экземпляр попапа для формы редактирования данных пользователя
 const popupProfile = new PopupWithForm(
    '.popup_profile'

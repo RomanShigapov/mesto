@@ -7,29 +7,13 @@ export default class Api {
 
   // получение карточек с сервера
   getCardsList() {
-    return fetch(`${this.base_url}${this.group_id}/cards`, {
+    return fetch(`${this.base_url}${this.group_id}/cards`,{
       headers: {
         authorization: this.auth_token
       }
-    })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }) // наконец пригодилось сокращенная запись if
+    .then(res => {return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)});
   }
-
-
-    /*.then(res => res.json())
-    .then((result) => {
-    console.log(result);
-    });*/
-
-
-  /*
-    .then(res.ok ? console.log(res.json()) : Promise.reject(`Ошибка: ${res.status}`));
-  }*/
 
   // добавление новой карточки
   // addCard() {}
@@ -41,7 +25,14 @@ export default class Api {
   // setCardLike() {}
 
   // получение информации о пользователе
-  // getUserInfo() {}
+  getUserInfo() {
+    return fetch(`${this.base_url}${this.group_id}/users/me`,{
+      headers: {
+        authorization: this.auth_token
+      }
+    }) // одинаковый код обработки... надо вынести отдельно
+    .then(res => {return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)});
+  }
 
   // редактирование данных пользователя
   // setUserInfo() {}
