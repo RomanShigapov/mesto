@@ -18,56 +18,73 @@ import {
   ,api_options
 } from '../utils/constants.js';
 
+// переменная для хранения id пользователя != его токену, забрать при обновлении информации о профиле
+let userId = null;
+
+// создаем экземпляр api для работы с сервером
 const mesto_api = new Api(api_options);
 
-// заберем с сервера карточки и отрисуем их
-mesto_api.getCardsList()
-  .then(cards => {
-    // экземпляр Section для отрисовки карточек
-    const renderCards = new Section({
-       items: cards
-      ,renderer: createCard
-      }
-      ,'.places__grid-items'
-    );
-    // отрисовка карточек c сервера
-    renderCards.rendered();
-  });
+// экземпляр Section для отрисовки карточек
+const cardsList = new Section({ renderer: createCard },'.places__grid-items');
+
+// функция создания карточки передаем в качестве renderer в экземпляр класса Section
+function createCard(card) {
+  const newCard = new Card(card,'.new-card', getUserId, showCardImage, likeCard);
+  return newCard.generateCard();
+};
+
+// функция получения id текущего юзера для передачи в карточку
+function getUserId() {
+  return userId;
+};
 
 // функция показа карточки по клику для мягкого связывания попапа и карточки
 function showCardImage(name, link) {
   popupWithImage.open({name, link});
 };
 
-// функция создания карточки
-function createCard(item) {
-  const newCard = new Card(item,'.new-card',showCardImage);
-  return newCard.generateCard();
+// функция лайка карточки
+function likeCard(cardId, like) {
+  mesto_api.setCardLike(cardId, like)
+  .then((card) => {
+    this._card_data.likes = card.likes;
+    this._renderLikes();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 };
 
-// подтянем данные о пользователе с сервера и установим их на страницу.
-mesto_api.getUserInfo()
-  .then(user_data => {
-    userInfo.setUserInfo({
-      name: user_data.name
-      ,description: user_data.about
-      ,pic_url: user_data.avatar
-    });
+// подтянем данные о пользователе с сервера и установим их на страницу, необходимо получить userId от сервера для отрисовки лайков и кнопок удаления на карточках
+// затем заберем с сервера карточки и отрисуем их
+Promise.all([mesto_api.getUserInfo(), mesto_api.getCardsList()])
+.then(([user_data, cards]) => {
+  userId = user_data._id;
+  userInfo.setUserInfo({
+    name: user_data.name
+    ,description: user_data.about
+    ,pic_url: user_data.avatar
   });
+  cardsList.renderCards(cards);
+})
+.catch((err) => {
+  console.log(err);
+})
+.finally(() => {
+  // завершить лоадер
+});
 
 // экземпляр класса для работы с данными пользователя
-const userInfo = new UserInfo(
-  {
-    name: '.profile__name'
-    ,description: '.profile__description'
-    ,avatar: '.profile__avatar'
-    ,avatar_button: '.profile__replace-avatar'
-  }
-);
+const userInfo = new UserInfo({
+  name: '.profile__name'
+  ,description: '.profile__description'
+  ,avatar: '.profile__avatar'
+  ,avatar_button: '.profile__replace-avatar'
+});
 
 // экземпляр попапа для формы редактирования данных пользователя
 const popupProfile = new PopupWithForm(
-   '.popup_profile'
+  '.popup_profile'
   ,(data) => {
     // начать лоадер
     mesto_api.setUserInfo({
@@ -88,8 +105,8 @@ const popupProfile = new PopupWithForm(
 
 // экземпляр попапа для формы добавления карточки на форму
 const popupNewCard = new PopupWithForm(
-   '.popup_new-card'
-  ,(data) => {renderCards.addItem(createCard(data))}
+  '.popup_new-card'
+  ,(data) => {cardsList.addCard(createCard(data))}
 );
 
 const popupAvatar = new PopupWithForm(
@@ -114,13 +131,11 @@ const popupAvatar = new PopupWithForm(
 // экземпляр попапа для показа карточки
 const popupWithImage = new PopupWithImage('.popup_picture');
 
-
 // установка текущих значений из профиля в форму редактирования
 function setProfilePopupInputs({ name, description }) {
   nameInput.value = name;
 	descriptionInput.value = description;
 };
-
 
 // валидация форм
 Array.from(document.forms).forEach(form => {
@@ -144,7 +159,6 @@ document.querySelector('.profile__replace-avatar').addEventListener('click',() =
   formValidatorsList['replace-avatar-form'].resetValidation();
   popupAvatar.open();
 });
-
 
 popupNewCard.setEventListeners();
 // слушатель на кнопку добавления карточки места
