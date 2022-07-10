@@ -37,7 +37,16 @@ export default class Api {
   }
 
   // удаление карточки
-  // deleteCard() {}
+  deleteCard(сardId) {
+    return fetch(`${this.base_url}${this.group_id}/cards/${сardId}`,{
+      method: 'DELETE'
+      ,headers: {
+        authorization: this.auth_token
+        ,'Content-Type': 'application/json'
+      }
+    })
+    .then(res => this.useServerResponse(res));
+  }
 
   // добавление удаление лайка карточки
   setCardLike(сardId, like) {

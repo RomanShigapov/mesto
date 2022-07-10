@@ -1,10 +1,11 @@
 export default class Card {
-  constructor(card_data, template_class, handleGetUserId, handleImageClick, handleLikeClick){
+  constructor(card_data, template_class, handleGetUserId, handleImageClick, handleLikeClick, handleDeleteClick){
     this._card_data = card_data; // получаем данные в виде объекта
     this._template_class = template_class; // сохраняем класс шаблона
     this._current_user_id = handleGetUserId(); // получаем id текущего юзера для проверок
     this._handleImageClick = handleImageClick; // обработчик клика по карточке
     this._handleLikeClick = handleLikeClick; // обработчик клика по кнопке лайк
+    this._handleDeleteClick = handleDeleteClick; // Обработчик удаления карточки
     this._element = { // создаем объект для хранения ссылок на части шаблона для удобства, в них же при инициализации храним классы для их получения позднее
       image: '.card__picture'
       ,caption: '.card__caption'
@@ -49,15 +50,11 @@ export default class Card {
     return template;
   }
 
-  _handleDeleteClick() {
-    this._template.remove();
-  }
-
   _setEventListeners() {
     this._element.image.addEventListener('click',() => this._handleImageClick(this._card_data.name, this._card_data.link));
     this._element.like_button.addEventListener('click',() => this._handleLikeClick(this._card_data._id, !this._isLiked()));
     if (!this._delete_button_hidden) {
-      this._element.delete_button.addEventListener('click',() => this._handleDeleteClick());
+      this._element.delete_button.addEventListener('click',() => this._handleDeleteClick(this._card_data._id));
     }
   }
 

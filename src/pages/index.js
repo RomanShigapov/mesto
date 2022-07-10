@@ -29,7 +29,7 @@ const cardsList = new Section({ renderer: createCard },'.places__grid-items');
 
 // функция создания карточки передаем в качестве renderer в экземпляр класса Section
 function createCard(card) {
-  const newCard = new Card(card,'.new-card', getUserId, showCardImage, likeCard);
+  const newCard = new Card(card,'.new-card', getUserId, showCardImage, likeCard, deleteCard);
   return newCard.generateCard();
 };
 
@@ -49,6 +49,16 @@ function likeCard(cardId, like) {
   .then((card) => {
     this._card_data.likes = card.likes;
     this._renderLikes();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+};
+
+function deleteCard(cardId) {
+  mesto_api.deleteCard(cardId)
+  .then((res) => {
+    this._template.remove();
   })
   .catch((err) => {
     console.log(err);
