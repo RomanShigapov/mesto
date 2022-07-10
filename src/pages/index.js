@@ -58,14 +58,17 @@ function likeCard(cardId, like) {
 
 function deleteCard(cardId) {
   popupDeleteConfirmation.setNewSubmit(() => {
-    // рендер
+    popupDeleteConfirmation.showLoader(true);
     mesto_api.deleteCard(cardId)
     .then((res) => {
       this._template.remove();
+      popupDeleteConfirmation.close();
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally(() => popupDeleteConfirmation.showLoader(false)
+    );
   });
   popupDeleteConfirmation.open();
 };
@@ -84,9 +87,6 @@ Promise.all([mesto_api.getUserInfo(), mesto_api.getCardsList()])
 })
 .catch((err) => {
   console.log(err);
-})
-.finally(() => {
-  // завершить лоадер
 });
 
 // экземпляр класса для работы с данными пользователя
@@ -101,19 +101,20 @@ const userInfo = new UserInfo({
 const popupProfile = new PopupWithForm(
   '.popup_profile'
   ,(data) => {
-    // начать лоадер
+    popupProfile.showLoader(true);
     mesto_api.setUserInfo({
       name: data.name
       ,about: data.description
     })
     .then(() => {
       userInfo.setUserInfo(data);
+      popupProfile.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      // завершить лоадер
+      popupProfile.showLoader(false);
     });
   }
 );
@@ -122,12 +123,17 @@ const popupProfile = new PopupWithForm(
 const popupNewCard = new PopupWithForm(
   '.popup_new-card'
   ,(data) => {
+    popupNewCard.showLoader(true);
     mesto_api.addCard(data)
     .then((card) => {
       cardsList.addCard(createCard(card));
+      popupNewCard.close();
     })
     .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+      popupNewCard.showLoader(false);
     });
   }
 );
@@ -135,22 +141,23 @@ const popupNewCard = new PopupWithForm(
 const popupAvatar = new PopupWithForm(
   '.popup_replace-avatar'
   ,(data) => {
-    // начать лоадер
+    popupAvatar.showLoader(true);
     // не здорово что наш сервер не проверяет доступность ссылки на профиль, наверное нужно наворотить еще и проверку url перед тем как ее грузить на сервер.
     mesto_api.setUserPic(data.link)
     .then(() => {
-      console.log('loading new avatar picture is successful');
       userInfo.setUserPic(data.link);
+      popupAvatar.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      // завершить лоадер
+      popupAvatar.showLoader(false);
     });
   }
 );
 
+// экземпляр попапа для подтверждения удаления
 const popupDeleteConfirmation = new PopupWithConfirmation(
   '.popup_delete-card'
   ,() => {}
