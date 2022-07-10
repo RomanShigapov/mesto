@@ -12,7 +12,9 @@ export default class Card {
       ,liked_class: 'card__like-button_liked'
       ,card_likes: '.card__likes'
       ,delete_button: '.card__delete-button'
+      ,hide_delete_class: 'button_hidden'
     };
+    this._delete_button_hidden = false;
   }
 
   _isLiked() {
@@ -30,9 +32,13 @@ export default class Card {
     else {
       this._element.like_button.classList.remove(this._element.liked_class);
     }
+  }
 
-
-
+  _hideDeleteButton() {
+    if (!(this._current_user_id === this._card_data.owner._id)) {
+      this._element.delete_button.classList.add(this._element.hide_delete_class);
+      this._delete_button_hidden = true;
+    }
   }
 
   _getTemplate() {
@@ -43,18 +49,16 @@ export default class Card {
     return template;
   }
 
-  /*_handleLikeClick() {
-    this._element.like_button.classList.toggle(this._element.liked_class);
-  }*/
-
   _handleDeleteClick() {
     this._template.remove();
   }
 
   _setEventListeners() {
-    this._element.like_button.addEventListener('click',() => this._handleLikeClick(this._card_data._id, !this._isLiked()));
-    this._element.delete_button.addEventListener('click',() => this._handleDeleteClick());
     this._element.image.addEventListener('click',() => this._handleImageClick(this._card_data.name, this._card_data.link));
+    this._element.like_button.addEventListener('click',() => this._handleLikeClick(this._card_data._id, !this._isLiked()));
+    if (!this._delete_button_hidden) {
+      this._element.delete_button.addEventListener('click',() => this._handleDeleteClick());
+    }
   }
 
   generateCard() {
@@ -75,6 +79,7 @@ export default class Card {
     this._element.image.alt = this._card_data.name + ' фото';
     this._element.image.title = this._element.image.alt;
     this._renderLikes();
+    this._hideDeleteButton();
 
     this._setEventListeners();
 

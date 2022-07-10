@@ -14,6 +14,7 @@
   @import url(../blocks/button/_opacity/button_opacity_main.css);
   @import url(../blocks/button/_opacity/button_opacity_high.css);
   @import url(../blocks/button/_opacity/button_opacity_low.css);
+  @import url(../blocks/button/_hidden/button_hidden.css);
 
 @import url(../blocks/profile/profile.css);
   @import url(../blocks/profile/__replace-avatar/profile__replace-avatar.css);
