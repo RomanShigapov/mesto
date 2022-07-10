@@ -23,12 +23,12 @@ export default class Api {
   // добавление новой карточки
   addCard({ name, link }) {
     return fetch(`${this.base_url}${this.group_id}/cards`,{
-      method: 'POST'
-      ,headers: {
-        authorization: this.auth_token
-        ,'Content-Type': 'application/json'
-      }
-      ,body: JSON.stringify({
+      method: 'POST',
+      headers: {
+        authorization: this.auth_token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
         name,
         link
       })
@@ -39,10 +39,10 @@ export default class Api {
   // удаление карточки
   deleteCard(сardId) {
     return fetch(`${this.base_url}${this.group_id}/cards/${сardId}`,{
-      method: 'DELETE'
-      ,headers: {
-        authorization: this.auth_token
-        ,'Content-Type': 'application/json'
+      method: 'DELETE',
+      headers: {
+        authorization: this.auth_token,
+        'Content-Type': 'application/json'
       }
     })
     .then(res => this.useServerResponse(res));
@@ -51,10 +51,10 @@ export default class Api {
   // добавление удаление лайка карточки
   setCardLike(сardId, like) {
     return fetch(`${this.base_url}${this.group_id}/cards/likes/${сardId}`,{
-      method: like ? 'PUT' : 'DELETE'
-      ,headers: {
-        authorization: this.auth_token
-        ,'Content-Type': 'application/json'
+      method: like ? 'PUT' : 'DELETE',
+      headers: {
+        authorization: this.auth_token,
+        'Content-Type': 'application/json'
       }
     })
     .then(res => this.useServerResponse(res));
@@ -73,12 +73,12 @@ export default class Api {
   // редактирование данных пользователя
   setUserInfo({name, about}) {
     return fetch(`${this.base_url}${this.group_id}/users/me`,{
-      method: 'PATCH'
-      ,headers: {
-        authorization: this.auth_token
-        ,'Content-Type': 'application/json'
-      }
-      ,body: JSON.stringify({
+      method: 'PATCH',
+      headers: {
+        authorization: this.auth_token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
         name,
         about
       })
@@ -89,12 +89,12 @@ export default class Api {
   // обновление аватара пользователя
   setUserPic(avatar) {
     return fetch(`${this.base_url}${this.group_id}/users/me/avatar`,{
-      method: 'PATCH'
-      ,headers: {
-        authorization: this.auth_token
-        ,'Content-Type': 'application/json'
-      }
-      ,body: JSON.stringify({
+      method: 'PATCH',
+      headers: {
+        authorization: this.auth_token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
         avatar
       })
     })

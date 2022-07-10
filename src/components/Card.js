@@ -7,13 +7,13 @@ export default class Card {
     this._handleLikeClick = handleLikeClick; // обработчик клика по кнопке лайк
     this._handleDeleteClick = handleDeleteClick; // Обработчик удаления карточки
     this._element = { // создаем объект для хранения ссылок на части шаблона для удобства, в них же при инициализации храним классы для их получения позднее
-      image: '.card__picture'
-      ,caption: '.card__caption'
-      ,like_button: '.card__like-button'
-      ,liked_class: 'card__like-button_liked'
-      ,card_likes: '.card__likes'
-      ,delete_button: '.card__delete-button'
-      ,hide_delete_class: 'button_hidden'
+      image: '.card__picture',
+      caption: '.card__caption',
+      like_button: '.card__like-button',
+      liked_class: 'card__like-button_liked',
+      card_likes: '.card__likes',
+      delete_button: '.card__delete-button',
+      hide_delete_class: 'button_hidden'
     };
     this._delete_button_hidden = false;
   }
@@ -47,10 +47,7 @@ export default class Card {
   }
 
   _getTemplate() {
-    const template = document
-    .querySelector(this._template_class).content
-    .firstElementChild.cloneNode(true);
-
+    const template = document.querySelector(this._template_class).content.firstElementChild.cloneNode(true);
     return template;
   }
 

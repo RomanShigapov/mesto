@@ -13,10 +13,10 @@ import initialCards from '../utils/initialCards.js';
 import validationConfig from '../utils/validationConfig.js';
 // импорт констант
 import {
-   nameInput
-  ,descriptionInput
-  ,formValidatorsList
-  ,api_options
+   nameInput,
+   descriptionInput,
+   formValidatorsList,
+   api_options
 } from '../utils/constants.js';
 
 // переменная для хранения id пользователя != его токену, забрать при обновлении информации о профиле
@@ -79,9 +79,9 @@ Promise.all([mesto_api.getUserInfo(), mesto_api.getCardsList()])
 .then(([user_data, cards]) => {
   userId = user_data._id;
   userInfo.setUserInfo({
-    name: user_data.name
-    ,description: user_data.about
-    ,pic_url: user_data.avatar
+    name: user_data.name,
+    description: user_data.about,
+    pic_url: user_data.avatar
   });
   cardsList.renderCards(cards);
 })
@@ -91,20 +91,20 @@ Promise.all([mesto_api.getUserInfo(), mesto_api.getCardsList()])
 
 // экземпляр класса для работы с данными пользователя
 const userInfo = new UserInfo({
-  name: '.profile__name'
-  ,description: '.profile__description'
-  ,avatar: '.profile__avatar'
-  ,avatar_button: '.profile__replace-avatar'
+  name: '.profile__name',
+  description: '.profile__description',
+  avatar: '.profile__avatar',
+  avatar_button: '.profile__replace-avatar'
 });
 
 // экземпляр попапа для формы редактирования данных пользователя
 const popupProfile = new PopupWithForm(
-  '.popup_profile'
-  ,(data) => {
+  '.popup_profile',
+  (data) => {
     popupProfile.showLoader(true);
     mesto_api.setUserInfo({
-      name: data.name
-      ,about: data.description
+      name: data.name,
+      about: data.description
     })
     .then(() => {
       userInfo.setUserInfo(data);
@@ -121,8 +121,8 @@ const popupProfile = new PopupWithForm(
 
 // экземпляр попапа для формы добавления карточки на форму
 const popupNewCard = new PopupWithForm(
-  '.popup_new-card'
-  ,(data) => {
+  '.popup_new-card',
+  (data) => {
     popupNewCard.showLoader(true);
     mesto_api.addCard(data)
     .then((card) => {
@@ -139,8 +139,8 @@ const popupNewCard = new PopupWithForm(
 );
 
 const popupAvatar = new PopupWithForm(
-  '.popup_replace-avatar'
-  ,(data) => {
+  '.popup_replace-avatar',
+  (data) => {
     popupAvatar.showLoader(true);
     // не здорово что наш сервер не проверяет доступность ссылки на профиль, наверное нужно наворотить еще и проверку url перед тем как ее грузить на сервер.
     mesto_api.setUserPic(data.link)
@@ -159,13 +159,12 @@ const popupAvatar = new PopupWithForm(
 
 // экземпляр попапа для подтверждения удаления
 const popupDeleteConfirmation = new PopupWithConfirmation(
-  '.popup_delete-card'
-  ,() => {}
+  '.popup_delete-card',
+  () => {}
 );
 
 // экземпляр попапа для показа карточки
 const popupWithImage = new PopupWithImage('.popup_picture');
-
 
 // установка текущих значений из профиля в форму редактирования
 function setProfilePopupInputs({ name, description }) {
