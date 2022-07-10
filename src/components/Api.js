@@ -21,7 +21,20 @@ export default class Api {
   }
 
   // добавление новой карточки
-  // addCard() {}
+  addCard({ name, link }) {
+    return fetch(`${this.base_url}${this.group_id}/cards`,{
+      method: 'POST'
+      ,headers: {
+        authorization: this.auth_token
+        ,'Content-Type': 'application/json'
+      }
+      ,body: JSON.stringify({
+        name,
+        link
+      })
+    })
+    .then(res => this.useServerResponse(res));
+  }
 
   // удаление карточки
   // deleteCard() {}

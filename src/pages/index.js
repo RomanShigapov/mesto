@@ -106,7 +106,15 @@ const popupProfile = new PopupWithForm(
 // экземпляр попапа для формы добавления карточки на форму
 const popupNewCard = new PopupWithForm(
   '.popup_new-card'
-  ,(data) => {cardsList.addCard(createCard(data))}
+  ,(data) => {
+    mesto_api.addCard(data)
+    .then((card) => {
+      cardsList.addCard(createCard(card));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
 );
 
 const popupAvatar = new PopupWithForm(
