@@ -4,6 +4,7 @@ import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
@@ -56,13 +57,17 @@ function likeCard(cardId, like) {
 };
 
 function deleteCard(cardId) {
-  mesto_api.deleteCard(cardId)
-  .then((res) => {
-    this._template.remove();
-  })
-  .catch((err) => {
-    console.log(err);
+  popupDeleteConfirmation.setNewSubmit(() => {
+    // рендер
+    mesto_api.deleteCard(cardId)
+    .then((res) => {
+      this._template.remove();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   });
+  popupDeleteConfirmation.open();
 };
 
 // подтянем данные о пользователе с сервера и установим их на страницу, необходимо получить userId от сервера для отрисовки лайков и кнопок удаления на карточках
@@ -146,8 +151,14 @@ const popupAvatar = new PopupWithForm(
   }
 );
 
+const popupDeleteConfirmation = new PopupWithConfirmation(
+  '.popup_delete-card'
+  ,() => {}
+);
+
 // экземпляр попапа для показа карточки
 const popupWithImage = new PopupWithImage('.popup_picture');
+
 
 // установка текущих значений из профиля в форму редактирования
 function setProfilePopupInputs({ name, description }) {
@@ -163,6 +174,7 @@ Array.from(document.forms).forEach(form => {
 });
 
 // инициализация слушателей
+popupDeleteConfirmation.setEventListeners();
 popupWithImage.setEventListeners();
 popupProfile.setEventListeners();
 // слушатель на кнопку редактирования профиля
