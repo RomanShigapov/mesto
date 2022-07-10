@@ -21,7 +21,7 @@
 .places{margin-bottom:66px;max-width:880px;min-width:320px}@media screen and (max-width:520px){.places{margin-bottom:48px}}
 .places__grid-items{-moz-column-gap:17px;column-gap:17px;display:grid;grid-template-columns:repeat(auto-fit,282px);justify-content:center;list-style-type:none;margin:0;padding:0;row-gap:20px}
 .card{background-color:#fff;border-radius:10px;box-sizing:border-box;color:#000;display:grid;grid-template-rows:282px;margin:0;max-width:282px;min-height:362px;position:relative}
-.card__picture{border-radius:10px 10px 0 0;height:282px;width:282px}.card__picture:hover{cursor:pointer}
+.card__picture{border-radius:10px 10px 0 0;height:282px;-o-object-fit:cover;object-fit:cover;width:282px}.card__picture:hover{cursor:pointer}
 .card__delete-button{background-color:transparent;background-image:url(ce3b64935accf9b8212e.svg);background-position:50%;background-repeat:no-repeat;border:0;height:19px;position:absolute;right:20px;top:20px;width:18px}
 .card__caption{align-self:center;font-size:24px;font-weight:900;line-height:1.2;margin:0;overflow:hidden;text-align:left;text-overflow:ellipsis;white-space:nowrap}
 .card__description{align-items:baseline;align-self:center;display:grid;gap:30px;grid-template-columns:190px 22px;justify-self:center;width:242px}
