@@ -48,8 +48,8 @@ function showCardImage(name, link) {
 function likeCard(cardId, like) {
   mesto_api.setCardLike(cardId, like)
   .then((card) => {
-    this._card_data.likes = card.likes;
-    this._renderLikes();
+    this.setLikes(card.likes);
+    this.renderLikes();
   })
   .catch((err) => {
     console.log(err);
@@ -61,7 +61,7 @@ function deleteCard(cardId) {
     popupDeleteConfirmation.showLoader(true);
     mesto_api.deleteCard(cardId)
     .then((res) => {
-      this._template.remove();
+      this.removeTemplate();
       popupDeleteConfirmation.close();
     })
     .catch((err) => {

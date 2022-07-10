@@ -22,7 +22,11 @@ export default class Card {
     return Boolean(this._card_data.likes.find(like => like._id === this._current_user_id));
   }
 
-  _renderLikes() {
+  setLikes(likes) {
+    this._card_data.likes = likes;
+  }
+
+  renderLikes() {
     // отрисуем количество лайков карточки
     this._element.card_likes.textContent = this._card_data.likes.length;
 
@@ -58,6 +62,10 @@ export default class Card {
     }
   }
 
+  removeTemplate() {
+    this._template.remove();
+  }
+
   generateCard() {
     // клонируем шаблон
     this._template = this._getTemplate();
@@ -75,7 +83,7 @@ export default class Card {
     this._element.image.src = this._card_data.link;
     this._element.image.alt = this._card_data.name + ' фото';
     this._element.image.title = this._element.image.alt;
-    this._renderLikes();
+    this.renderLikes();
     this._hideDeleteButton();
 
     this._setEventListeners();
