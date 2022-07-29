@@ -20,7 +20,7 @@ import {
 } from '../utils/constants.js';
 
 // переменная для хранения id пользователя != его токену, забрать при обновлении информации о профиле
-let userId = null;
+let userId = null; // убрать userId в класс userInfo
 
 // создаем экземпляр api для работы с сервером
 const mesto_api = new Api(api_options);
